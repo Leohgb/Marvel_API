@@ -9,25 +9,28 @@ export const Dashboard = ({ search }: { search: any }) => {
     const shouldLog = useRef(true);
 
     const [characters, setCharacters] = useState<any[]>([]);
-    let [allCharacters, setAllcharacters] = useState<any[]>([]);
 
     const [url, setUrl] = useState(FetchHeroes);
 
-    let hasMoreResults = true;
-    let offset = 0;
 
     const getCharacter = async () => {
+        let hasMoreResults = true;
+        let offset = 0;
+        let allCharacters: any[] = [];
 
         setUrl(FetchHeroes);
 
-        const res = await axios.get(`${url}&limit=100&offset=${offset}`)
-            .then((res) => res.data.data.results);
+        while (hasMoreResults) {
+           const res = await axios.get(`${url}&limit=100&offset=${offset}`)
+                .then((res) =>  res.data.data.results);
             console.log(offset)
 
-        allCharacters = [...allCharacters, ...res];
+            allCharacters = [...allCharacters, ...res];
+            offset += 100;
+            hasMoreResults = offset < 500 
+            console.log("Characters: " + allCharacters.length + " offSet: " + offset)
+        }
 
-        offset += 100;
-        hasMoreResults = offset < characters.length
         console.log(hasMoreResults)
         console.log(allCharacters)
         /* console.log(offset)
@@ -55,9 +58,7 @@ export const Dashboard = ({ search }: { search: any }) => {
     useEffect(() => {
 
         try {
-
             getCharacter();
-
         } catch (e) {
 
             console.log(e)
