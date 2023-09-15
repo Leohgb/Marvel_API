@@ -14,11 +14,11 @@ export const Dashboard = ({ search }: { search: any }) => {
 
 
     const getCharacter = async () => {
+        setUrl(FetchHeroes);
         let hasMoreResults = true;
         let offset = 0;
         let allCharacters: any[] = [];
 
-        setUrl(FetchHeroes);
 
         while (hasMoreResults) {
            const res = await axios.get(`${url}&limit=100&offset=${offset}`)
@@ -27,7 +27,7 @@ export const Dashboard = ({ search }: { search: any }) => {
 
             allCharacters = [...allCharacters, ...res];
             offset += 100;
-            hasMoreResults = offset < 500 
+            hasMoreResults = offset <= allCharacters.length 
             console.log("Characters: " + allCharacters.length + " offSet: " + offset)
         }
 
