@@ -19,29 +19,14 @@ export const Dashboard = ({ search }: { search: any }) => {
         let offset = 0;
         let allCharacters: any[] = [];
 
-
         while (hasMoreResults) {
-           const res = await axios.get(`${url}&limit=100&offset=${offset}`)
-                .then((res) =>  res.data.data.results);
-            console.log(offset)
-
+            const res = await axios.get(`${url}&limit=100&offset=${offset}`)
+                .then((res) => res.data.data.results);
             allCharacters = [...allCharacters, ...res];
+            setCharacters(allCharacters);
             offset += 100;
-            hasMoreResults = offset <= allCharacters.length 
-            console.log("Characters: " + allCharacters.length + " offSet: " + offset)
+            hasMoreResults = offset <= allCharacters.length
         }
-
-        console.log(hasMoreResults)
-        console.log(allCharacters)
-        /* console.log(offset)
-
-    axios.get(`${url}&limit=100&offset=${offset}`)
-
-        .then((res) => {
-          setCharacters(res.data.data.results)
-            console.log(res.data.data.results)
-
-        }) */
 
     }
 
@@ -60,35 +45,22 @@ export const Dashboard = ({ search }: { search: any }) => {
         try {
             getCharacter();
         } catch (e) {
-
             console.log(e)
-
         }
-
         // window.addEventListener("scroll", handleScroll);
-
     }, [search]);
 
     return (
         < div className="container" >
-
             <h2 className="title">Personagens:</h2>
-
             <div className="card-container">
-
                 {characters.length === 0 && <p>Carregando...</p>}
-
                 {!search.slice(-1) && characters.length > 0 &&
-
                     characters.map((character) =>
-
                         <Card key={character.id} character={character} showLink={true} />)}
-
                 {/*search.slice(-1) && characters.length > 0 &&
                     search.map((character: any) =>
-
                 <Card key={character.id} character={character} showLink={true} />)*/}
-
             </div>
         </div>
     )
