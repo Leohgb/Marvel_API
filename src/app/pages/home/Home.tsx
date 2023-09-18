@@ -19,6 +19,7 @@ export const Dashboard = ({ search }: { search: any }) => {
         let offset = 0;
         let allCharacters: any[] = [];
 
+        if(search == ""){
         while (hasMoreResults) {
             const res = await axios.get(`${url}&limit=100&offset=${offset}`)
                 .then((res) => res.data.data.results);
@@ -26,7 +27,7 @@ export const Dashboard = ({ search }: { search: any }) => {
             setCharacters(allCharacters);
             offset += 100;
             hasMoreResults = offset <= allCharacters.length
-        }
+        }}
 
     }
 
@@ -56,18 +57,8 @@ export const Dashboard = ({ search }: { search: any }) => {
             <div className="card-container">
                 {characters.length === 0 && <p>Carregando...</p>}
                 {characters.length > 0 &&
-                    characters.filter((character) => {
-                        if(search == ""){
-                            return character;
-                        }else if(character.name.toLowerCase().includes(search.toLowerCase())){
-                            console.log(character.name)
-                            return character;
-                        }
-                    }).map((character) =>
+                    characters.filter((character) => character.name.toLowerCase().indexOf(search.toLowerCase()) !== -1).map((character) =>
                         <Card key={character.id} character={character} showLink={true} />)}
-                {/*search.slice(-1) && characters.length > 0 &&
-                    search.map((character: any) =>
-                <Card key={character.id} character={character} showLink={true} />)*/}
             </div>
         </div>
     )
