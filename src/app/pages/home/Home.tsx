@@ -55,8 +55,15 @@ export const Dashboard = ({ search }: { search: any }) => {
             <h2 className="title">Personagens:</h2>
             <div className="card-container">
                 {characters.length === 0 && <p>Carregando...</p>}
-                {!search.slice(-1) && characters.length > 0 &&
-                    characters.map((character) =>
+                {characters.length > 0 &&
+                    characters.filter((character) => {
+                        if(search == ""){
+                            return character;
+                        }else if(character.name.toLowerCase().includes(search.toLowerCase())){
+                            console.log(character.name)
+                            return character;
+                        }
+                    }).map((character) =>
                         <Card key={character.id} character={character} showLink={true} />)}
                 {/*search.slice(-1) && characters.length > 0 &&
                     search.map((character: any) =>
