@@ -7,10 +7,9 @@ import { FetchHeroes } from "../../../utils/Util";
 export const Dashboard = ({ search }: { search: any }) => {
 
     const shouldLog = useRef(true);
-
     const [characters, setCharacters] = useState<any[]>([]);
-
     const [url, setUrl] = useState(FetchHeroes);
+    let currentIndex: any;
 
 
     const getCharacter = async () => {
@@ -18,16 +17,16 @@ export const Dashboard = ({ search }: { search: any }) => {
         let hasMoreResults = true;
         let offset = 0;
         let allCharacters: any[] = [];
-
-        if(search == ""){
-        while (hasMoreResults) {
-            const res = await axios.get(`${url}&limit=100&offset=${offset}`)
-                .then((res) => res.data.data.results);
-            allCharacters = [...allCharacters, ...res];
-            setCharacters(allCharacters);
-            offset += 100;
-            hasMoreResults = offset <= allCharacters.length
-        }}
+        if (search == "") {
+            while (hasMoreResults) {
+                const res = await axios.get(`${url}&limit=100&offset=${offset}`)
+                    .then((res) => res.data.data.results);
+                allCharacters = [...allCharacters, ...res];
+                setCharacters(allCharacters);
+                offset += 100;
+                hasMoreResults = offset <= allCharacters.length
+            }
+        }
 
     }
 
@@ -57,8 +56,16 @@ export const Dashboard = ({ search }: { search: any }) => {
             <div className="card-container">
                 {characters.length === 0 && <p>Carregando...</p>}
                 {characters.length > 0 &&
-                    characters.filter((character) => character.name.toLowerCase().indexOf(search.toLowerCase()) !== -1).map((character) =>
-                        <Card key={character.id} character={character} showLink={true} />)}
+                    characters.filter((character) => {
+                        if (character.name.toLocaleLowerCase().startsWith(search)){
+                            currentIndex = search.length;
+                            return character.name.toLowerCase().startsWith(search);
+                        }else{
+                            return character.name.toLowerCase()
+                            .startsWith(search.substring(0, currentIndex));
+                        }
+                    }).map((character) =>
+                            <Card key={character.id} character={character} showLink={true} />)}
             </div>
         </div>
     )
