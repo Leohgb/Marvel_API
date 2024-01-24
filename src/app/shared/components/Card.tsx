@@ -1,17 +1,39 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-const Card = ({ character, showLink = true }: { character: any, showLink: boolean }) => {
-    return (
-        <div className="card-card">
-            <img src={`${character.thumbnail.path}.${character.thumbnail.extension}`} />
-            <h2>{character.name}</h2>
-            <p>
-            </p>
-            {showLink && <Link to={`/movie/${character.id}`}>Detalhes</Link>}
-        </div>
-    )
+/*interface GenericCard{
+    id: number,
+    title: string,
+    name: string,
+    thumbnail: {path: string, extension: str}
+}*/
+
+interface CardProps<T extends ICharacters | IComic> {
+    data: T;
+    showLink?: boolean;
 }
 
+const Card = <T extends ICharacters | IComic>({ data, showLink = true }: CardProps<T>) => {
+    return (
+        <div className="card-card">
+            {('name' in data) &&
+                <Link to={`/character/${data.id}`}>
+                    <div className='card-items'>
+                        <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.name}`} />
+                        <h2>{data.name !== "" && data.name}</h2>
+                    </div>
+                    <div className='Card-Details'>Detalhes</div>
+                </Link>
+                || ('title' in data) &&
+                <div className='card-items'>
+                    <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.title}`} />
+                    <h2>{data.title !== "" && data.title}</h2>
+                </div>
+            }
+        </div>
+    );
+};
+
+export default Card;
 
 
-export default Card
+

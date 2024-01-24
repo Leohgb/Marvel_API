@@ -1,71 +1,84 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Card from "../../shared/components/Card";
-import '../home/Card.css'
+import '../home/Home.css'
 import axios from "axios";
 import { FetchHeroes } from "../../../utils/Util";
+import Die from "../../../assets/die.png";
+import { useRef } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
+import Thanos_Snap from "../../../assets/snap-the-snap.gif"
 
-export const Dashboard = ({ search }: { search: any }) => {
-
-    const shouldLog = useRef(true);
-    const [characters, setCharacters] = useState<any[]>([]);
+export const Dashboard = () => {
+    const [characters, setCharacters] = useState<ICharacters[]>([]);
     const [url, setUrl] = useState(FetchHeroes);
-    let currentIndex: any;
+    const [random, setRandom] = useState<number>(0);
+    const [search, setSearch] = useState<string>("");
 
+    const input = useRef<HTMLInputElement>(null);
 
-    const getCharacter = async () => {
-        setUrl(FetchHeroes);
-        let hasMoreResults = true;
-        let offset = 0;
-        let allCharacters: any[] = [];
-        if (search == "") {
-            while (hasMoreResults) {
-                const res = await axios.get(`${url}&limit=100&offset=${offset}`)
-                    .then((res) => res.data.data.results);
-                allCharacters = [...allCharacters, ...res];
-                setCharacters(allCharacters);
-                offset += 100;
-                hasMoreResults = offset <= allCharacters.length
-            }
-        }
-
-    }
-
-    /*
-    const handleScroll = (e: any | Event) => {
-
-        if (window.innerHeight + e.target.documentElement.scrollTop + 1 >= e.target.documentElement.scrollHeight) {
-
-            getCharacter();
-        }
-
-    }*/
-
-    useEffect(() => {
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
 
         try {
-            getCharacter();
+            setSearch(input.current?.value || "");
         } catch (e) {
             console.log(e)
         }
-        // window.addEventListener("scroll", handleScroll);
+    }
+
+    const getRandomCharacter = async () => {
+        setSearch("");
+        if (search == "") {
+            setCharacters([]);
+        }
+        const random = Math.floor(Math.random() * (1543 - 0 + 1)) + 0;
+        setRandom(random);
+        const res = await axios.get(`${url}&offset=${random}`);
+        setTimeout(() => setCharacters(res.data.data.results), 2500);
+    };
+
+    const getCharacter = async () => {
+        setUrl(FetchHeroes);
+        //&offset=1562
+        if (search != "") {
+            setCharacters([]);
+            const res = await axios.get(`${url}&nameStartsWith=${search} `)
+                .then((res) => res.data.data.results);
+            setTimeout(() => setCharacters(res), 2500);
+        }
+    }
+
+    useEffect(() => {
+        try {
+            getCharacter();
+            if (search == "") {
+                getRandomCharacter();
+            }
+            console.log(characters)
+        } catch (e) {
+            console.log(e)
+        }
     }, [search]);
 
     return (
         < div className="container" >
+            <form className="search">
+                <input type="text"
+                    placeholder="Busque um Personagem"
+                    ref={input}
+                />
+                <button onClick={handleSubmit}> <BiSearchAlt2 /></button>
+            </form>
             <h2 className="title">Personagens:</h2>
+            <button className="random-button" onClick={getRandomCharacter}>
+                <img className="random-die" src={Die} alt="" />
+            </button>
             <div className="card-container">
-                {characters.length === 0 && <p>Carregando...</p>}
-                {characters.length > 0 &&
-                    characters.filter((character) => {
-                        if (character.name.toLocaleLowerCase().startsWith(search)){
-                            currentIndex = search.length;
-                            return character.name.toLowerCase().startsWith(search);
-                        }else{
-                            return character.name.toLowerCase()
-                            .startsWith(search.substring(0, currentIndex));
-                        }
-                    }).map((character) =>
-                            <Card key={character.id} character={character} showLink={true} />)}
+                {characters.length === 0 && <img className="Thanos-Gif" src={Thanos_Snap} />}
+                {characters.length !== 0 &&
+                    characters.map((character) =>
+                        <Card key={character.id} data={character} showLink={true} />)}
+
             </div>
         </div>
     )

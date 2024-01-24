@@ -1,0 +1,208 @@
+* {
+    font-family: "Bangers", system-ui;
+}
+
+.container .title {
+    color: #FFF;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 2rem 0 1rem;
+}
+
+.Thanos-Gif {
+    margin: auto;
+    display: block;
+}
+
+.title .query-text {
+    color: #1DA1F2;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem
+}
+
+.card-card {
+    box-shadow: 0 0 0.1rem 0.2rem #fff, 
+    0 0 0rem #fff, 
+    0 0 2rem #ff0000, 
+    0 0 0.4rem 0.4rem #ff0000, 
+    0 0 2rem #ff0000, 
+    0 0 2rem #ff0000
+}
+
+/*#ea4f4c*/
+
+.card-container>.card-card {
+    flex-basis: 30%;
+}
+
+.card-container .card-card {
+    border-radius: 10px;
+    overflow: hidden;
+    object-fit: cover;
+    max-width: 100%;
+    color: #FFF;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #222;
+}
+
+.card-container .card-card .card-items {
+    cursor: pointer;
+    width: 100%;
+}
+
+.search {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search input {
+    padding: 0.2rem 0.8rem;
+    width: 20%;
+    font-size: 1.2vw;
+    border-radius: 4px 0 0 4px;
+    border: none;
+    background-color: #FFF;
+    color: #222;
+}
+
+.search button {
+    background-color: #ed1a23;
+    border: 2px solid #ed1a23;
+    border-radius: 0 4px 4px 0;
+    color: #000;
+    padding: 0.3rem;
+    font-size: 1.2vw;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+
+.search button:hover {
+    background-color: transparent;
+    color: #ea4f4c;
+}
+
+
+.card-container .card-items img {
+    transform-origin: 50% 10%;
+    width: 100%;
+    height: 350px;
+    max-height: 25vw;
+    overflow: hidden;
+}
+
+.card-container .card-card:hover img {
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+    transition: transform .6s ease;
+    opacity: 0.5;
+}
+
+.card-container .card-card:hover img {
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+    transition: transform .6s ease;
+    opacity: 0.5;
+}
+
+.card-container div h2 {
+    max-width: 100%;
+    position: sticky;
+    box-sizing: border-box;
+    margin: 15px 0;
+    color: #ffffff;
+    font-family: "Bangers", system-ui;
+
+}
+
+.random-button {
+    width: 7.2vw;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+
+.random-button .random-die {
+    transform: rotate(-720deg);
+    transition: transform 1s;
+    width: 95%;
+}
+
+.random-button:active .random-die {
+    transform: rotate(0deg);
+    transition: 0s;
+}
+
+
+.card-container div svg {
+    color: #f7d354;
+    margin-left: 1rem;
+}
+
+.card-container div h2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card-container div .Card-Details {
+    position: sticky;
+    background-color: #ea4f4c;
+    border: 2px solid #ea4f4c;
+    border-radius: 4px;
+    color: #000;
+    padding: 1rem 0.5rem;
+    align-items: center;
+    transition: 0.4s;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-container .card-card:hover {
+}
+
+.card-container .card-card:hover .Card-Details {
+    background-color: #222;
+    color: #ea4f4c;
+}
+ 
+@media only screen and (max-width: 1024px) {
+    .card-container>.card-card {
+        flex-basis: 40%;
+    }
+
+    .card-container div .card-items:hover img {
+        -ms-transform: scale(1.8);
+        -webkit-transform: scale(1.8);
+        transform: scale(1.8);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .card-container>.card-card {
+        flex-basis: 100%;
+    }
+
+
+    .card-container .card-items img {
+        height: 100%;
+        max-height: 60vw;
+    }
+}

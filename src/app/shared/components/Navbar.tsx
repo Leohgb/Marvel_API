@@ -1,29 +1,16 @@
-
-import { BiSearchAlt2 } from "react-icons/bi"
 import './Navbar.css'
 
-const Navbar = ({ setSearch }: { setSearch: any }) => {
+import Marvel_logo from "../../../assets/Marvel_logo.png"
 
-  const handleChange = (searched: string) => {
-    try {
-      setSearch(searched);
-    } catch (e) {
-      console.log(e)
-      setSearch("")
-    }
-  }
+const Navbar = () => {
+
 
   return (
 
     <div>
       <nav id="navbar">
-        <h2>
-        </h2>
-        <input type="text"
-          placeholder="Busque um Personagem"
-          onChange={(e) => handleChange(e.target.value)}
-        />
-        <button type="submit"> <BiSearchAlt2 /></button>
+        <img src={Marvel_logo} alt="" />
+     
       </nav>
     </div>
 

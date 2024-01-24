@@ -1,62 +1,38 @@
-#navbar{
+#navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #222;
+    padding: 0rem 2rem;
+    background-color: #ed1a23;
 }
 
-#navbar h2 a{
+#navbar img {
+    width: 10%
+}
+
+#navbar h2 a {
     display: flex;
     align-items: center;
     gap: 0.5rem
 }
 
-#navbar form{
-    display: flex;
-}
 
-#navbar input{
-    padding: 0.2rem 0.8rem;
-    border-radius: 4px;
-    border: none
-}
-
-#navbar form button{
-    background-color: #ea4f4c;
-    border: 2px solid #ea4f4c;
-    border-radius: 4px;
-    color: #000;
-    padding: 0.3rem;
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-#navbar form button:hover{
-    background-color: transparent;
-    color: #ea4f4c;
-}
-
-@media only screen and (max-width: 480px){
-    #navbar{
+@media only screen and (max-width: 480px) {
+    #navbar {
         display: block;
         gap: 0.5rem;
         justify-content: center;
-        width: 100%;
     }
 
-    #navbar form{
+    #navbar form {
         margin-top: 0.5rem;
     }
- 
-    .movie-page{
-        max-width: 90%!important;
+
+    .movie-page {
+        max-width: 90% !important;
     }
 
-    .movie-card img{
+    .movie-card img {
         max-width: 90%;
     }
 }
