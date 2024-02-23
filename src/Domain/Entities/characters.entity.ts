@@ -1,6 +1,6 @@
 interface ICharacters {
     id: number;
-    name?: string;
+    name: string;
     description?: string;
     resourceURI?: string;
     comics?: {

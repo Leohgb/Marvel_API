@@ -1,20 +1,14 @@
 import { Link } from 'react-router-dom';
 
-/*interface GenericCard{
-    id: number,
-    title: string,
-    name: string,
-    thumbnail: {path: string, extension: str}
-}*/
-
 interface CardProps<T extends ICharacters | IComic> {
     data: T;
     showLink?: boolean;
 }
 
-const Card = <T extends ICharacters | IComic>({ data, showLink = true }: CardProps<T>) => {
+const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
     return (
         <div className="card-card">
+
             {('name' in data) &&
                 <Link to={`/character/${data.id}`}>
                     <div className='card-items'>

@@ -2,39 +2,29 @@ import { useParams } from "react-router-dom";
 import './Character.css'
 import { useEffect, useState } from "react";
 import { FetchHeroes } from "../../../utils/Util";
-import axios from "axios";
 import Card from "../../shared/components/Card";
+import { getCharacter, getComics } from "../../../utils/asyncActions";
+import Pagination from "../../shared/components/Pagination";
 
 export const Character = () => {
     const { id } = useParams()
     const [character, setCharacter] = useState<ICharacters>()
     const [comics, setComics] = useState<IComic[]>([]);
+    const [page, setPage] = useState(0);
     const [url, setUrl] = useState(FetchHeroes);
-
-    const getCharacter = async (url: RequestInfo | URL, urlAuthorization: String) => {
-        const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
-        setCharacter(CharacterData[0]);
-        try {
-            const CharacterComicsResponse = await axios.get(`${CharacterData[0].comics.collectionURI}${urlAuthorization}`);
-            setComics(CharacterComicsResponse.data.data.results);
-
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    const urlAuthorization = `${url?.slice(51)}`;
+    const characterUrl = `${url?.slice(0, 51)}/${id}`;
 
     useEffect(() => {
-        console.log(comics)
         setUrl(FetchHeroes);
-        const urlAuthorization = `${url?.slice(51)}`;
-        const characterUrl = `${url?.slice(0, 51)}/${id}`;
-        getCharacter(characterUrl, urlAuthorization);
-    }, [])
+        getCharacter(characterUrl, urlAuthorization).then((character) => setCharacter(character));
+        getComics(characterUrl, urlAuthorization, page).then(comics => setComics(comics));
+    }, [page])
 
     return (
         <div className="container ">
+
             {character && <>
-                <p className="tagline">{ }</p>
                 <div className="info">
                     <div className="character-image">
                         <figure>
@@ -47,20 +37,20 @@ export const Character = () => {
                     </div>
                 </div>
                 <div className="">
-                    <h2>
+                    <h1>
                         Quadrinhos:
-                    </h2>
+                    </h1>
                     <div className="card-container HQ">
                         {comics.map((comic) => (
                             <Card key={comic.id} data={comic} showLink={true} />
                         ))}
-
                     </div>
+                    <Pagination page={page} setPage={setPage} available={character?.comics?.available} />
+
                 </div>
 
             </>
             }
         </div>
     )
-
 }
