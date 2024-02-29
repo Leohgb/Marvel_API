@@ -46,7 +46,7 @@
     border-radius: 0;
 }
 
-.container .HQ img{
+.container .HQ img {
     height: 100%;
     max-height: 30vw;
 }
@@ -70,5 +70,23 @@
     .container .info {
         flex-wrap: wrap;
         justify-content: left;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .card-container{
+        justify-content: center;
+    }
+
+    .card-container .card-items, .card-container .card-card {
+        width: 80%;
+    }
+
+    .card-container .card-card {
+        max-width: 80%;
+    }
+    
+    .card-container .card-items img {
+        max-height: 70vw;
     }
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './Card.css'
 
 interface CardProps<T extends ICharacters | IComic> {
     data: T;
@@ -6,9 +7,9 @@ interface CardProps<T extends ICharacters | IComic> {
 }
 
 const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
+    console.log(data)
     return (
         <div className="card-card">
-
             {('name' in data) &&
                 <Link to={`/character/${data.id}`}>
                     <div className='card-items'>
@@ -18,10 +19,13 @@ const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
                     <div className='Card-Details'>Detalhes</div>
                 </Link>
                 || ('title' in data) &&
-                <div className='card-items'>
-                    <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.title}`} />
-                    <h2>{data.title !== "" && data.title}</h2>
-                </div>
+                <Link to={`/Hq/${data.id}`}>
+                    <div className='card-items'>
+                        <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.title}`} />
+                        <h2>{data.title !== "" && data.title}</h2>
+                    </div>
+                </Link>
+
             }
         </div>
     );

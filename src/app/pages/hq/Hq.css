@@ -1,0 +1,33 @@
+.Comic{
+    display: flex;
+    flex-direction: column;
+}
+
+.Comic .picture {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+.Comic .Informations{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.Comic .Informations h4{
+    width: fit-content;
+    display: inline;
+}
+
+.Comic .picture {
+    width:30%;
+}
+
+.Comic .picture img{
+}
+
+.Comic .description{
+    width: 60%;
+}
+

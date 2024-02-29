@@ -14,7 +14,7 @@ export const fetchCharacterByName = async (name: string): Promise<ICharacters[]>
     return res.data.data.results;
 };
 
-export const getCharacter = async (url: RequestInfo | URL, urlAuthorization: string) => {
+export const fetchData= async (url: RequestInfo | URL, urlAuthorization: string) => {
     const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
     return CharacterData[0];
 }

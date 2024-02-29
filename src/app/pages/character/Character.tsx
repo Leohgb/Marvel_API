@@ -3,7 +3,7 @@ import './Character.css'
 import { useEffect, useState } from "react";
 import { FetchHeroes } from "../../../utils/Util";
 import Card from "../../shared/components/Card";
-import { getCharacter, getComics } from "../../../utils/asyncActions";
+import { fetchData, getComics } from "../../../utils/asyncActions";
 import Pagination from "../../shared/components/Pagination";
 
 export const Character = () => {
@@ -17,7 +17,7 @@ export const Character = () => {
 
     useEffect(() => {
         setUrl(FetchHeroes);
-        getCharacter(characterUrl, urlAuthorization).then((character) => setCharacter(character));
+        fetchData(characterUrl, urlAuthorization).then((character) => setCharacter(character));
         getComics(characterUrl, urlAuthorization, page).then(comics => setComics(comics));
     }, [page])
 
@@ -36,7 +36,7 @@ export const Character = () => {
                         {character.description === "" && <h3>Não possui descrição</h3> || <h3> {character.description}</h3>}
                     </div>
                 </div>
-                <div className="">
+                <div>
                     <h1>
                         Quadrinhos:
                     </h1>
@@ -46,7 +46,6 @@ export const Character = () => {
                         ))}
                     </div>
                     <Pagination page={page} setPage={setPage} available={character?.comics?.available} />
-
                 </div>
 
             </>

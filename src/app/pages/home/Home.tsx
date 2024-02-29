@@ -46,19 +46,13 @@ export const Dashboard = () => {
     }*/
 
     useEffect(() => {
-        return () => {
-            try {
-                if (click === false) {
-                    setCharacters([]);
-                    fetchRandomCharacter().then(characters => setTimeout(() => setCharacters(characters), 2300));
-                } else if(click === true){
-                    setSearch("");
-                    setCharacters([]);
-                    fetchCharacterByName(search).then(character => setTimeout(() => setCharacters(character), 2300));
-                }
-            } catch (e) {
-                console.log(e)
-            }
+        if (click === false) {
+            setCharacters([]);
+            fetchRandomCharacter().then(characters => setTimeout(() => setCharacters(characters), 2300));
+        } else if (click === true) {
+            setCharacters([]);
+            setSearch("");
+            fetchCharacterByName(search).then(character => setTimeout(() => setCharacters(character), 2300));
         }
     }, [click, search]);
 
