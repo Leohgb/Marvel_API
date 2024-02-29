@@ -18,6 +18,13 @@
         0 0 2rem #ff0000
 }
 
+.card-card a{
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    justify-content: space-between;
+}
+
 .card-card:hover {
     transform: scale(1.2);
 }
