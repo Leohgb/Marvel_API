@@ -1,4 +1,4 @@
-.Comic{
+.Comic {
     display: flex;
     flex-direction: column;
 }
@@ -9,25 +9,79 @@
     margin-top: 0;
 }
 
-.Comic .Informations{
+.Comic .Title {
+    margin-left: 7.5%;
+}
+
+.Comic .Informations {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.Comic .Informations h3{
+.Comic .Informations h2{
+    font-size: 1.687vw;
+    margin-top: 0;
+    margin-bottom: 5px; 
+}
+
+.Comic .Informations h3 {
+    font-size: 1.316vw;
+    margin: 2px 0;
     width: fit-content;
     display: inline;
 }
 
 .Comic .picture {
-    width:30%;
+    perspective: 2000px;
+    width: 25%;
 }
 
-.Comic .picture img{
+.Comic .picture:hover img {
+    transform: rotateY(0);
+    transition: 0.5s;
 }
 
-.Comic .description{
+.Comic .picture:hover {
+    perspective: 0;
+    width: 25%;
+    transition: 0.5s;
+}
+
+.Comic .picture img {
+    transition: 0.5s;
+    border: 4px solid;
+    margin-bottom: 10px;
+    transform: rotateY(30deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    transform-style: preserve-3d;
+}
+
+.Comic .picture img::before {
+    content: "";
+
+    width: 60px;
+    height: 100%;
+    transform: rotateY(90deg);
+    transform-origin: 0 50%;
+    filter: brightness(70%);
+}
+
+.Comic .picture img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    transform: rotateY(90deg);
+    transform-origin: 0 50%;
+    filter: brightness(70%);
+}
+
+.Comic .description {
     width: 60%;
+    display: flex;
+    flex-direction: column;
 }
-

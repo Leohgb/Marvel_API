@@ -40,6 +40,14 @@ h1 {
 
 }
 
+h2{
+  font-size: 1.687vw
+}
+
+h3{
+  font-size: 1.316vw
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

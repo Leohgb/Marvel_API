@@ -20,11 +20,11 @@ export const Hq = () => {
         <main className="Comic">
             {hq &&
                 <div>
-                    <h2>{hq.title}</h2>
+                    <h2 className="Title">{hq.title}</h2>
                     <div className="Informations">
                         <figure className="picture">
                             <img src={`${hq.thumbnail.path}.${hq.thumbnail.extension}`} alt="" />
-                            <p>{hq.dates[0].date}</p>
+                            <p>Lançamento: {hq.dates[0].date}</p>
                         </figure>
                         <div className="description">
                             <h2>criadores:</h2>
@@ -36,7 +36,9 @@ export const Hq = () => {
                         </div>
                     </div>
                 </div>
-            }
+             || <div>
+                
+                </div>}
         </main>
     )
 }
