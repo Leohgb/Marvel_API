@@ -40,7 +40,7 @@ export const Character = () => {
                     <h1>
                         Quadrinhos:
                     </h1>
-                    <div className="card-container HQ">
+                    <div className="card-container Hq">
                         {comics.map((comic) => (
                             <Card key={comic.id} data={comic} showLink={true} />
                         ))}

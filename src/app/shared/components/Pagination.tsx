@@ -15,8 +15,8 @@ const Pagination = ({ page, setPage, available }: { page: number, setPage: Funct
 
     return (
         <div className='Pagination'>
-            {page > pageNumbers[0] && <button onClick={() => { setPage((prevState: number) => (prevState - 20)) }}>&#60;</button> || <p></p>}
             <ul className='List'>
+                {page > pageNumbers[0] && <button onClick={() => { setPage((prevState: number) => (prevState - 20)) }}>&#60;</button> || <p></p>}
                 {pageNumbers.map((num, index) => {
                     if (
                         index + 1 === pageNumbers.length ||
@@ -47,8 +47,8 @@ const Pagination = ({ page, setPage, available }: { page: number, setPage: Funct
                         );
                     }
                 })}
+                {pageFormat <= pageNumbers.length - 2 && <button onClick={() => setPage((prevState: number) => (prevState + 20))}>&#62;</button>}
             </ul>
-            {pageFormat <= pageNumbers.length-2 && <button onClick={() => setPage((prevState: number) => (prevState + 20))}>&#62;</button>}
         </div >
     )
 }

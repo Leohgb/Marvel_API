@@ -1,7 +1,7 @@
 interface IHq {
     id: number;
     resourceURI: string;
-    character: {
+    characters: {
         available: number;
         collectionURI: string;
         items: {

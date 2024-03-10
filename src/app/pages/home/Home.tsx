@@ -60,12 +60,12 @@ export const Dashboard = () => {
         < div className="container" >
             <form className="search">
                 <input type="text"
-                    placeholder="Busque um Personagem"
+                    placeholder="Search for a Character"
                     ref={input}
                 />
                 <button onClick={handleSubmit}> <BiSearchAlt2 /></button>
             </form>
-            <h2 className="title">Personagens:</h2>
+            <h2 className="title">Characters:</h2>
             <button className="random-button" onClick={() => {
                 fetchRandomCharacter().then(characters => setCharacters(characters))
                 setClick(true);

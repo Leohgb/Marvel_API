@@ -24,6 +24,7 @@ const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
                         <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.title}`} />
                         <h2>{data.title !== "" && data.title}</h2>
                     </div>
+                    <div className='Card-Details'>Detalhes</div>
                 </Link>
 
             }

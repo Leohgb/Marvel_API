@@ -1,12 +1,14 @@
 .Comic {
     display: flex;
     flex-direction: column;
+    padding: 0 8% 0 8%;
 }
 
 .Comic .picture {
     display: flex;
     flex-direction: column;
     margin-top: 0;
+    gap: 15px;
 }
 
 .Comic .Title {
@@ -19,21 +21,31 @@
     width: 100%;
 }
 
-.Comic .Informations h2{
-    font-size: 1.687vw;
-    margin-top: 0;
-    margin-bottom: 5px; 
+.Comic .Informations h2 {
+    margin: 5px 0;
 }
 
 .Comic .Informations h3 {
-    font-size: 1.316vw;
     margin: 2px 0;
     width: fit-content;
     display: inline;
 }
 
+.Comic .Informations p {
+    display: flex;
+    font-size: 1.15vw;
+    font-weight: thin;
+    margin: 2px 0;
+}
+
+.Comic .Informations p img {
+    display: flex;
+    margin-inline: auto;
+    width: 15vw;
+}
+
 .Comic .picture {
-    perspective: 2000px;
+    perspective: 200vw;
     width: 25%;
 }
 
@@ -85,3 +97,4 @@
     display: flex;
     flex-direction: column;
 }
+
