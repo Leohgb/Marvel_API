@@ -18,6 +18,7 @@ export const Character = () => {
     useEffect(() => {
         setUrl(FetchHeroes);
         fetchData(characterUrl, urlAuthorization).then((character) => setCharacter(character));
+        console.log(character);
         getComics(characterUrl, urlAuthorization, page).then(comics => setComics(comics));
     }, [page])
 
@@ -38,7 +39,7 @@ export const Character = () => {
                 </div>
                 <div>
                     <h1>
-                        Quadrinhos:
+                        Appearances:
                     </h1>
                     <div className="card-container Hq">
                         {comics.map((comic) => (

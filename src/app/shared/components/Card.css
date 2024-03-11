@@ -29,6 +29,10 @@
     transform: scale(1.2);
 }
 
+.card-card {
+    transform: scale(0.9);
+}
+
 /*#ea4f4c*/
 
 .card-container>.card-card {
@@ -41,7 +45,6 @@
     object-fit: cover;
     max-width: 100%;
     color: #FFF;
-    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -151,21 +154,25 @@
     }
 
     .card-container .card-items img {
-        height: 100%;
+        height: 250px;
         max-height: 60vw;
     }
 
+    .Hq  .card-items img {
+        height: 400px;
+    }
+
     .card-container div h2 {
-        margin: 5% 0 20% 0;
+        margin: 5% 0 5% 0;
     }
 }
 
 @media only screen and (max-width: 480px) {
     .card-container>.card-card {
-        flex-basis: 80%;
+        flex-basis: 70%;
     }
     .card-container .card-items img {
-        height: 100%;
+        height: 400px;
         max-height: 100vw;
     }
 }
