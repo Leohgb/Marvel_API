@@ -68,6 +68,7 @@
     }
 
     .container .info {
+        margin-top: 5%;
         flex-wrap: wrap;
         justify-content: left;
     }
