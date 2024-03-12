@@ -42,6 +42,12 @@
     transition: .2s;
 }
 
+.character-info img {
+    display: flex;
+    margin: auto;
+    width: 25%;
+}
+
 .container .info figure img:hover {
     border-radius: 0;
 }

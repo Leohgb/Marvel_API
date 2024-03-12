@@ -37,7 +37,7 @@ export const Hq = () => {
                                 hq.creators.items.map((creator) => (
                                     <h3>{creator.role === 'writer' ? `✍️${creator.role}` :
                                         creator.role === 'artist' || creator.role === 'colorist (cover)'
-                                            || creator.role === 'colorist' ? `🖌${creator.role}`
+                                            || creator.role === 'colorist' || creator.role === 'painter (cover)' ? `🖌${creator.role}`
                                             : creator.role === 'penciler (cover)' || creator.role === 'letterer'
                                                 || creator.role === 'penciler' || creator.role === 'penciller'
                                                 || creator.role === 'penciller (cover)' ? `📝${creator.role}`

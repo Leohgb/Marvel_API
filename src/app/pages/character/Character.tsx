@@ -5,6 +5,7 @@ import { FetchHeroes } from "../../../utils/Util";
 import Card from "../../shared/components/Card";
 import { fetchData, getComics } from "../../../utils/asyncActions";
 import Pagination from "../../shared/components/Pagination";
+import notFound from "../../../assets/NAO_Encontrado.png"
 
 export const Character = () => {
     const { id } = useParams()
@@ -34,7 +35,7 @@ export const Character = () => {
                     </div>
                     <div className="character-info">
                         <h1>{character.name}</h1>
-                        {character.description === "" && <h3>Não possui descrição</h3> || <h3> {character.description}</h3>}
+                        {character.description === "" && <img src={notFound} alt="" /> || <h3> {character.description}</h3>}
                     </div>
                 </div>
                 <div>
