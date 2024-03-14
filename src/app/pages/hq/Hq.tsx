@@ -9,17 +9,20 @@ export const Hq = () => {
     const { id } = useParams()
     const [hq, setHq] = useState<IHq>()
     const [url, setUrl] = useState(FetchHeroes);
-    const [character, setCharacter] = useState([]);
+    const [character, setCharacter] = useState<ICharacters[]>([]);
 
     const urlAuthorization = `${url?.slice(51)}`;
     const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
 
+    const Character_comic = hq?.characters?.collectionURI &&
+        fetchData(hq?.characters?.collectionURI, urlAuthorization).then((character) => setCharacter(character));
+
+
     useEffect(() => {
         setUrl(FetchHeroes);
-        hq ? fetchData(hq.characters.collectionURI, urlAuthorization).then((character) => setCharacter(character)) : notFound;
+        Character_comic
         fetchData(hqUrl, urlAuthorization).then((hq) => { setHq(hq) });
-        console.log(character)
-    }, [])
+    }, [Character_comic, hq?.characters.collectionURI, hqUrl, urlAuthorization])
 
     return (
         <main className="Comic">
@@ -50,7 +53,6 @@ export const Hq = () => {
                         </div>
                     </div>
                     <div>
-                        {character.map((characters) => <p>{characters}</p>)}
                     </div>
                 </div>
                 || <div>
