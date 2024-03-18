@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FetchHeroes } from "../../../utils/Util";
-import { fetchData } from "../../../utils/asyncActions";
+import { fetchCharacter, fetchData } from "../../../utils/asyncActions";
 import notFound from "../../../assets/NAO_Encontrado.png"
 import "./Hq.css";
+import { ICharacters } from "../../../Domain/Entities/characters.entity";
+import { IHq } from "../../../Domain/Entities/hq.entity";
 
 export const Hq = () => {
     const { id } = useParams()
@@ -14,15 +16,13 @@ export const Hq = () => {
     const urlAuthorization = `${url?.slice(51)}`;
     const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
 
-    const Character_comic = hq?.characters?.collectionURI &&
-        fetchData(hq?.characters?.collectionURI, urlAuthorization).then((character) => setCharacter(character));
-
-
     useEffect(() => {
         setUrl(FetchHeroes);
-        Character_comic
         fetchData(hqUrl, urlAuthorization).then((hq) => { setHq(hq) });
-    }, [Character_comic, hq?.characters.collectionURI, hqUrl, urlAuthorization])
+        if (hq) {
+            fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization).then((character) => setCharacter(character));
+        }
+    }, [hq?.characters.collectionURI, hqUrl, urlAuthorization])
 
     return (
         <main className="Comic">

@@ -1,6 +1,7 @@
 // useCases/FetchHeroesUseCase.ts
 import axios from "axios";
 import { FetchHeroes } from "./Util";
+import { ICharacters } from "../Domain/Entities/characters.entity";
 
 export const fetchRandomCharacter = async (): Promise<ICharacters[]> => {
     const url = `${FetchHeroes}&offset=${Math.floor(Math.random() * (1543 - 0 + 1)) + 0}`;
@@ -15,6 +16,11 @@ export const fetchCharacterByName = async (name: string): Promise<ICharacters[]>
 };
 
 export const fetchData = async (url: RequestInfo | URL, urlAuthorization: string) => {
+    const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
+    return CharacterData[0];
+}
+
+export const fetchCharacter = async (url: RequestInfo | URL, urlAuthorization: string) => {
     const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
     console.log(url)
     return CharacterData[0];

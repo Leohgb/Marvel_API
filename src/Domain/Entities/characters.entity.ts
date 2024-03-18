@@ -1,9 +1,9 @@
-interface ICharacters {
+export interface ICharacters {
     id: number;
     name: string;
     description?: string;
     resourceURI?: string;
-    comics?: {
+    comics: {
         available: number;
         collectionURI: string;
         items: {

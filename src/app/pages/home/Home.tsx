@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Thanos_Snap from "../../../assets/snap-the-snap.gif"
 import { fetchCharacterByName, fetchRandomCharacter } from "../../../utils/asyncActions";
+import { ICharacters } from "../../../Domain/Entities/characters.entity";
 
 export const Dashboard = () => {
     const [characters, setCharacters] = useState<ICharacters[]>([]);

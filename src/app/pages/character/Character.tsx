@@ -6,6 +6,7 @@ import Card from "../../shared/components/Card";
 import { fetchData, getComics } from "../../../utils/asyncActions";
 import Pagination from "../../shared/components/Pagination";
 import notFound from "../../../assets/NAO_Encontrado.png"
+import { ICharacters } from "../../../Domain/Entities/characters.entity";
 
 export const Character = () => {
     const { id } = useParams()

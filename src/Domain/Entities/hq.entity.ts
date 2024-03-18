@@ -1,4 +1,4 @@
-interface IHq {
+export interface IHq {
     id: number;
     resourceURI: string;
     characters: {

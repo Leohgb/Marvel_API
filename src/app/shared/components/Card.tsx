@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Card.css'
+import { ICharacters } from '../../../Domain/Entities/characters.entity';
 
 interface CardProps<T extends ICharacters | IComic> {
     data: T;
