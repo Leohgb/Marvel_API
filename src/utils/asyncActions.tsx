@@ -17,12 +17,12 @@ export const fetchCharacterByName = async (name: string): Promise<ICharacters[]>
 
 export const fetchData = async (url: RequestInfo | URL, urlAuthorization: string) => {
     const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
+    console.log(`${url}${urlAuthorization}`)
     return CharacterData[0];
 }
 
 export const fetchCharacter = async (url: RequestInfo | URL, urlAuthorization: string) => {
     const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
-    console.log(url)
     return CharacterData[0];
 }
 

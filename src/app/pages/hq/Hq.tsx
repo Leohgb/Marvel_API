@@ -19,9 +19,8 @@ export const Hq = () => {
     useEffect(() => {
         setUrl(FetchHeroes);
         fetchData(hqUrl, urlAuthorization).then((hq) => { setHq(hq) });
-        if (hq) {
-            fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization).then((character) => setCharacter(character));
-        }
+        hq && fetchData(`${hq?.characters.collectionURI}`, urlAuthorization)
+            .then((character) => setCharacter(character));
     }, [hq?.characters.collectionURI, hqUrl, urlAuthorization])
 
     return (
@@ -34,7 +33,7 @@ export const Hq = () => {
                             <img src={`${hq.thumbnail.path}.${hq.thumbnail.extension}`} alt="" />
                             <h2>Launch: {new Date(hq.dates[0].date).toLocaleDateString()}</h2>
                         </figure>
-                        <div className="description">
+                        <div key={hq.id} className="description">
                             <h2>Creators:</h2>
                             {hq.creators ?
                                 hq.creators.items.map((creator) => (
@@ -51,6 +50,8 @@ export const Hq = () => {
                             <h2>Story:</h2>
                             <p>{hq.description ? hq.description : <img src={notFound} />}</p>
                         </div>
+                        <p>{/*hq && character.map((chara)=> chara.name)*/}</p>
+
                     </div>
                     <div>
                     </div>
