@@ -12,7 +12,7 @@ export const Dashboard = () => {
     const [characters, setCharacters] = useState<ICharacters[]>([]);
     const [search, setSearch] = useState<string>("");
     const [click, setClick] = useState<boolean>(false);
-
+    const [initialized, setInitialized] = useState(false);
 
     const input = useRef<HTMLInputElement>(null);
 
@@ -31,15 +31,17 @@ export const Dashboard = () => {
     }
 
     useEffect(() => {
-
-        if (click === false) {
-            setCharacters([]);
-            fetchRandomCharacter().then((character) => characterSet(character));
-        } else if (click === true) {
-            setCharacters([]);
-            setSearch("");
-            fetchCharacterByName(search).then((character) => { characterSet(character) });
-        }
+        setTimeout(() => {
+            if (click === false) {
+                setCharacters([]);
+                fetchRandomCharacter().then((character) => characterSet(character));
+            } else if (click === true) {
+                setCharacters([]);
+                setSearch("");
+                fetchCharacterByName(search).then((character) => { characterSet(character) });
+            }
+            setInitialized(true);
+        }, 1000)
     }, [click, search]);
 
     return (
@@ -60,7 +62,7 @@ export const Dashboard = () => {
             </button>
             <div className="card-container">
                 {characters.length === 0 && <img className="Thanos-Gif" src={Thanos_Snap} />}
-                {characters.length !== 0 &&
+                {characters.length !== 0 && initialized == true &&
                     characters.map((character) =>
                         <Card key={character.id} data={character} showLink={true} />)}
 
