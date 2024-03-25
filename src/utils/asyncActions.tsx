@@ -10,18 +10,26 @@ export const fetchRandomCharacter = async (): Promise<ICharacters[]> => {
 };
 
 export const fetchCharacterByName = async (name: string): Promise<ICharacters[]> => {
-    const url = `${FetchHeroes}&nameStartsWith=${name}`;
-    const res = await axios.get(url);
-    return res.data.data.results;
+    if (name != "") {
+        const url = `${FetchHeroes}&nameStartsWith=${name}`;
+        const res = await axios.get(url)
+        return res.data.data.results;
+    } else {
+        return [];
+    }
 };
 
 export const fetchData = async (url: RequestInfo | URL, urlAuthorization: string) => {
     const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
-    console.log(`${url}${urlAuthorization}`)
     return CharacterData[0];
 }
 
 export const fetchCharacter = async (url: RequestInfo | URL, urlAuthorization: string) => {
+    const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
+    return CharacterData;
+}
+
+export const fetchCharacters = async (url: RequestInfo | URL, urlAuthorization: string) => {
     const CharacterData = await axios.get(`${url}${urlAuthorization}`).then((res) => res.data.data.results);
     return CharacterData[0];
 }

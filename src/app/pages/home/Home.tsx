@@ -12,6 +12,8 @@ export const Dashboard = () => {
     const [characters, setCharacters] = useState<ICharacters[]>([]);
     const [search, setSearch] = useState<string>("");
     const [click, setClick] = useState<boolean>(false);
+
+
     const input = useRef<HTMLInputElement>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -24,36 +26,19 @@ export const Dashboard = () => {
         }
     }
 
-    /*const getRandomCharacter = async () => {
-        setSearch("");
-        if (search == "") {
-            setCharacters([]);
-        }
-        const random = Math.floor(Math.random() * (1543 - 0 + 1)) + 0;
-        setRandom(random);
-        const res = await axios.get(`${url}&offset=${random}`);
-        setTimeout(() => setCharacters(res.data.data.results), 2500);
-    };
-
-    const getCharacter = async () => {
-        setUrl(FetchHeroes);
-        //&offset=1562
-        if (search != "") {
-            setCharacters([]);
-            const res = await axios.get(`${url}&nameStartsWith=${search} `)
-                .then((res) => res.data.data.results);
-            setTimeout(() => setCharacters(res), 2500);
-        }
-    }*/
+    const characterSet = (characters: ICharacters[]) => {
+        setCharacters(characters)
+    }
 
     useEffect(() => {
+
         if (click === false) {
             setCharacters([]);
-            fetchRandomCharacter().then(characters => setTimeout(() => setCharacters(characters), 2300));
+            fetchRandomCharacter().then((character) => characterSet(character));
         } else if (click === true) {
             setCharacters([]);
             setSearch("");
-            fetchCharacterByName(search).then(character => setTimeout(() => setCharacters(character), 2300));
+            fetchCharacterByName(search).then((character) => { characterSet(character) });
         }
     }, [click, search]);
 

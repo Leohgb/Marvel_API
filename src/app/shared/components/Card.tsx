@@ -8,7 +8,6 @@ interface CardProps<T extends ICharacters | IComic> {
 }
 
 const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
-    console.log(data)
     return (
         <div className="card-card">
             {('name' in data) &&
@@ -17,7 +16,7 @@ const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
                         <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.name}`} />
                         <h2>{data.name !== "" && data.name}</h2>
                     </div>
-                    <div className='Card-Details'>Detalhes</div>
+                    <div className='Card-Details'><p>Detalhes</p></div>
                 </Link>
                 || ('title' in data) &&
                 <Link to={`/Hq/${data.id}`}>
@@ -25,9 +24,8 @@ const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
                         <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.title}`} />
                         <h2>{data.title !== "" && data.title}</h2>
                     </div>
-                    <div className='Card-Details'>Detalhes</div>
+                    <div className='Card-Details'><p>Detalhes</p></div>
                 </Link>
-
             }
         </div>
     );
