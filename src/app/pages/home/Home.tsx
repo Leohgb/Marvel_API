@@ -5,14 +5,17 @@ import Die from "../../../assets/die.png";
 import { useRef } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Thanos_Snap from "../../../assets/snap-the-snap.gif"
+import Error_Code from "../../../assets/Marvel_logo2.png"
 import { fetchCharacterByName, fetchRandomCharacter } from "../../../utils/asyncActions";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 
 export const Dashboard = () => {
     const [characters, setCharacters] = useState<ICharacters[]>([]);
+    const [showMessage, setShowMessage] = useState<boolean>(false);
+
     const [search, setSearch] = useState<string>("");
     const [click, setClick] = useState<boolean>(false);
-    const [initialized, setInitialized] = useState(false);
+    const wasCalled = useRef(false);
 
     const input = useRef<HTMLInputElement>(null);
 
@@ -26,22 +29,22 @@ export const Dashboard = () => {
         }
     }
 
-    const characterSet = (characters: ICharacters[]) => {
-        setCharacters(characters)
-    }
-
     useEffect(() => {
-        setTimeout(() => {
-            if (click === false) {
-                setCharacters([]);
-                fetchRandomCharacter().then((character) => characterSet(character));
-            } else if (click === true) {
-                setCharacters([]);
-                setSearch("");
-                fetchCharacterByName(search).then((character) => { characterSet(character) });
-            }
-            setInitialized(true);
-        }, 1000)
+        if (click === false) {
+            if (wasCalled.current) return;
+            wasCalled.current = true;
+            fetchRandomCharacter().then((character) => setCharacters(character));
+        } else if (click === true) {
+            setSearch("");
+            setShowMessage(false);
+            fetchCharacterByName(search).then((character) => { return setCharacters(character) });
+        }
+        const timeoutId = setTimeout(() => {
+            setShowMessage(true)
+        }, 2000);
+
+        return () => clearTimeout(timeoutId);
+
     }, [click, search]);
 
     return (
@@ -54,15 +57,22 @@ export const Dashboard = () => {
                 <button onClick={handleSubmit}> <BiSearchAlt2 /></button>
             </form>
             <h2 className="title">Characters:</h2>
-            <button className="random-button" onClick={() => {
-                fetchRandomCharacter().then(characters => setCharacters(characters))
-                setClick(true);
-            }}>
-                <img className="random-die" src={Die} alt="Dado" />
-            </button>
+            <div className="buttons">
+                <button className="random-button" onClick={() => {
+                    fetchRandomCharacter().then(characters => setCharacters(characters))
+                    setClick(true);
+                }}>
+                    <img className="random-die" src={Die} alt="Dado" />
+                </button>
+                <div className="dropdown">
+                    <button className="dropbtn">?</button>
+                    <p className="dropdown-content">AAAAAA</p>
+                </div>
+            </div>
             <div className="card-container">
-                {characters.length === 0 && <img className="Thanos-Gif" src={Thanos_Snap} />}
-                {characters.length !== 0 && initialized == true &&
+                {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={Thanos_Snap} />}
+                {characters.length === 0 && showMessage && <img className="NotFound" src={Error_Code} />}
+                {characters.length !== 0 &&
                     characters.map((character) =>
                         <Card key={character.id} data={character} showLink={true} />)}
 

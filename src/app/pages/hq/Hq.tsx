@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FetchHeroes } from "../../../utils/Util";
 import { fetchCharacter, fetchData } from "../../../utils/asyncActions";
-import notFound from "../../../assets/NAO_Encontrado.png"
+import notFound from "../../../assets/Marvel_logo2.png"
 import "./Hq.css";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 import { IHq } from "../../../Domain/Entities/hq.entity";
@@ -22,7 +22,7 @@ export const Hq = () => {
         fetchData(hqUrl, urlAuthorization).then((hq) => { setHq(hq) });
         hq && fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
             .then((character) => setCharacters(character));
-    }, [hq?.characters.collectionURI, hqUrl, urlAuthorization])
+    }, [hq, hqUrl, urlAuthorization])
 
     return (
         <main className="Comic">

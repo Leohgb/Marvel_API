@@ -9,9 +9,47 @@
     margin: 2rem 0 1rem;
 }
 
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    margin: 0 50%;
+    padding: 50px 50px 50px 50px;
+    overflow: auto;
+    background-color: #000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    z-index: 1;
+}
+
 .Thanos-Gif {
     margin: auto;
     display: block;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}
+
+.buttons button:nth-child(2):focus {
+    background-color: white;
+
+}
+
+.NotFound {
+    width: 50%;
 }
 
 .title .query-text {
@@ -57,8 +95,6 @@
 .random-button {
     width: 7.2vw;
     display: table;
-    margin-right: auto;
-    margin-left: auto;
     margin-bottom: 5px;
 }
 
@@ -72,4 +108,3 @@
     transform: rotate(0deg);
     transition: 0s;
 }
-

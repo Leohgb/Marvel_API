@@ -5,7 +5,7 @@ import { FetchHeroes } from "../../../utils/Util";
 import Card from "../../shared/components/Card";
 import { fetchData, getComics } from "../../../utils/asyncActions";
 import Pagination from "../../shared/components/Pagination";
-import notFound from "../../../assets/NAO_Encontrado.png"
+import notFound from "../../../assets/Marvel_logo2.png"
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 
 export const Character = () => {
