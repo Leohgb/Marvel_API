@@ -28,12 +28,12 @@
 .dropdown-content::before{ /* the pointer tip */
     content:'';
     position:absolute;
-    width:30px;
+    width:60px;
     height:30px;
     background-color: #fff;
     top: 0;
     left: 50%;
-    transform: translateX(-200%) translateY(-18px) rotate(45deg);
+    transform: translateX(-90%) translateY(-17.4px) rotate(27deg);
     border-top: #fff 2px solid;
     border-left: #fff 2px solid;
     background: #000;
