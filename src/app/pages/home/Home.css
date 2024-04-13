@@ -11,8 +11,9 @@
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
+    position: absolute;
+    margin-left: 12rem;
     display: inline-block;
-    position: relative;
 }
 
 .dropdown-content {
@@ -57,11 +58,12 @@
     margin-right: auto;
     margin-left: auto;
     justify-content: center;
+    align-items: center;
+    gap: 2%;
 }
 
 .buttons button:nth-child(2):focus {
     background-color: white;
-
 }
 
 .NotFound {
@@ -101,17 +103,23 @@
     transition: 0.4s;
 }
 
-
 .search button:hover {
     background-color: transparent;
     color: #ea4f4c;
 }
 
+.buttons button{
+    border: 1.5px solid #fff;
+}
 
 .random-button {
-    width: 7.2vw;
+    width: 6rem;
     display: table;
     margin-bottom: 5px;
+}
+
+.buttons button:hover {
+    border: 2px solid #fff;
 }
 
 .random-button .random-die {
