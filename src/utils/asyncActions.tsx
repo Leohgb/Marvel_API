@@ -1,4 +1,3 @@
-// useCases/FetchHeroesUseCase.ts
 import axios from "axios";
 import { FetchHeroes } from "./Util";
 import { ICharacters } from "../Domain/Entities/characters.entity";

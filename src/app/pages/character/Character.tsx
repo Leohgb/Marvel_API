@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import './Character.css'
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FetchHeroes } from "../../../utils/Util";
-import Card from "../../shared/components/Card";
+import Card from "../../shared/components/card/Card";
 import { fetchData, getComics } from "../../../utils/asyncActions";
-import Pagination from "../../shared/components/Pagination";
+import Pagination from "../../shared/components/pagination/Pagination";
 import notFound from "../../../assets/Marvel_logo2.png"
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 

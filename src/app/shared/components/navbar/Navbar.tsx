@@ -1,6 +1,6 @@
 import './Navbar.css'
 
-import Marvel_logo from "../../../assets/Marvel_logo.png"
+import Marvel_logo from "../../../../assets/Marvel_logo.png"
 
 const Navbar = () => {
 

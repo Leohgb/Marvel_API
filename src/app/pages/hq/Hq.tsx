@@ -6,7 +6,7 @@ import notFound from "../../../assets/Marvel_logo2.png"
 import "./Hq.css";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 import { IHq } from "../../../Domain/Entities/hq.entity";
-import Card from "../../shared/components/Card";
+import Card from "../../shared/components/card/Card";
 
 export const Hq = () => {
     const wasCalled = useRef(false);
