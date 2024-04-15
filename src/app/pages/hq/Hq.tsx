@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FetchHeroes } from "../../../utils/Util";
 import { fetchCharacter, fetchData } from "../../../utils/asyncActions";
@@ -9,6 +9,8 @@ import { IHq } from "../../../Domain/Entities/hq.entity";
 import Card from "../../shared/components/Card";
 
 export const Hq = () => {
+    const wasCalled = useRef(false);
+
     const { id } = useParams()
     const [hq, setHq] = useState<IHq>()
     const [url, setUrl] = useState(FetchHeroes);
@@ -18,8 +20,14 @@ export const Hq = () => {
     const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
 
     useEffect(() => {
+
+        console.log(hq?.id)
         setUrl(FetchHeroes);
-        fetchData(hqUrl, urlAuthorization).then((hq) => { setHq(hq) });
+        fetchData(hqUrl, urlAuthorization).then((hq) => {
+            if (wasCalled.current) return;
+            wasCalled.current = true;
+            setHq(hq)
+        });
         hq && fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
             .then((character) => setCharacters(character));
     }, [hq, hqUrl, urlAuthorization])
@@ -34,11 +42,11 @@ export const Hq = () => {
                             <img src={`${hq.thumbnail.path}.${hq.thumbnail.extension}`} alt="" />
                             <h2>Launch: {new Date(hq.dates[0].date).toLocaleDateString()}</h2>
                         </figure>
-                        <div key={hq.id} className="description">
+                        <div className="description">
                             <h2>Creators:</h2>
                             {hq.creators ?
-                                hq.creators.items.map((creator) => (
-                                    <h3>{creator.role === 'writer' ? `✍️${creator.role}` :
+                                hq.creators.items.map((creator, index) => (
+                                    <h3 key={index}>{creator.role === 'writer' ? `✍️${creator.role}` :
                                         creator.role === 'artist' || creator.role === 'colorist (cover)'
                                             || creator.role === 'colorist' || creator.role === 'painter (cover)' ? `🖌${creator.role}`
                                             : creator.role === 'penciler (cover)' || creator.role === 'letterer'

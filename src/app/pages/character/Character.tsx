@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import './Character.css'
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FetchHeroes } from "../../../utils/Util";
 import Card from "../../shared/components/Card";
 import { fetchData, getComics } from "../../../utils/asyncActions";
@@ -9,6 +9,8 @@ import notFound from "../../../assets/Marvel_logo2.png"
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 
 export const Character = () => {
+    const wasCalled = useRef(false);
+
     const { id } = useParams()
     const [character, setCharacter] = useState<ICharacters>()
     const [comics, setComics] = useState<IComic[]>([]);
@@ -17,12 +19,22 @@ export const Character = () => {
     const urlAuthorization = `${url?.slice(51)}`;
     const characterUrl = `${url?.slice(0, 51)}/${id}`;
 
-    useEffect(() => {
+
+    const a = useCallback(() => {
+
         setUrl(FetchHeroes);
-        fetchData(characterUrl, urlAuthorization).then((character) => setCharacter(character));
+        fetchData(characterUrl, urlAuthorization).then((character) => {
+            if (wasCalled.current) return;
+            wasCalled.current = true;
+            return setCharacter(character)
+        });
         console.log(character);
         getComics(characterUrl, urlAuthorization, page).then(comics => setComics(comics));
-    }, [page])
+    }, [character, characterUrl, page, urlAuthorization])
+
+    useEffect(() => {
+        a()
+    }, [a])
 
     return (
         <div className="container ">

@@ -10,12 +10,12 @@ import { fetchCharacterByName, fetchRandomCharacter } from "../../../utils/async
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 
 export const Dashboard = () => {
+    const wasCalled = useRef(false);
     const [characters, setCharacters] = useState<ICharacters[]>([]);
     const [showMessage, setShowMessage] = useState<boolean>(false);
 
     const [search, setSearch] = useState<string>("");
     const [click, setClick] = useState<boolean>(false);
-    const wasCalled = useRef(false);
 
     const input = useRef<HTMLInputElement>(null);
 
@@ -49,26 +49,28 @@ export const Dashboard = () => {
 
     return (
         < div className="container" >
-            <form className="search">
-                <input type="text"
-                    placeholder="Search for a Character"
-                    ref={input}
-                />
-                <button onClick={handleSubmit}> <BiSearchAlt2 /></button>
-            </form>
-            <h2 className="title">Characters:</h2>
             <div className="buttons">
-                <button className="random-button" onClick={() => {
-                    fetchRandomCharacter().then(characters => setCharacters(characters))
-                    setClick(true);
-                }}>
-                    <img className="random-die" src={Die} alt="Dado" />
-                </button>
+                <form className="search">
+                    <input type="text"
+                        placeholder="Search for a Character"
+                        ref={input}
+                    />
+                    <button onClick={handleSubmit}> <BiSearchAlt2 /></button>
+                </form>
                 <div className="dropdown">
                     <button className="dropbtn">?</button>
                     <p className="dropdown-content">AAAAAA</p>
                 </div>
             </div>
+
+            <h2 className="title">Characters:</h2>
+            <button className="random-button" onClick={() => {
+                fetchRandomCharacter().then(characters => setCharacters(characters))
+                setClick(true);
+            }}>
+                <img className="random-die" src={Die} alt="Dado" />
+            </button>
+
             <div className="card-container">
                 {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={Thanos_Snap} />}
                 {characters.length === 0 && showMessage && <img className="NotFound" src={Error_Code} />}
