@@ -48,7 +48,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #222;
+    background-color: #111111;
 }
 
 .card-container .card-card .card-items {
@@ -110,14 +110,19 @@
 
 .card-container div .Card-Details {
     position: sticky;
-    background-color: #ea4f4c;
-    border: 2px solid #ea4f4c;
+    background-color: #af0120;
+    border: 2px solid #af0120;
     border-radius: 4px;
-    color: #000;
     align-items: center;
     transition: 0.4s;
     text-align: center;
     font-weight: bold;
+}
+
+.card-container div .Card-Details h2{
+    color: #f7faf8;
+    text-shadow: none;
+    
 }
 
 .container .Hq img {
@@ -126,8 +131,13 @@
 }
 
 .card-container .card-card:hover .Card-Details {
-    background-color: #222;
-    color: #ea4f4c;
+    background-color: #111111;
+}
+
+.card-container .card-card:hover .Card-Details h2{
+    color: #d21c2f;
+    transition: .5s;
+    text-shadow: none;
 }
 
 @media only screen and (max-width: 1024px) {

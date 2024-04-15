@@ -9,7 +9,6 @@
     margin: 2rem 0 1rem;
 }
 
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -25,7 +24,6 @@
 }
 
 .dropdown-content::before {
-    /* the pointer tip */
     content: '';
     position: absolute;
     width: 20px;
@@ -74,11 +72,13 @@
 }
 
 .search {
+    width: 30%;
     display: flex;
     justify-content: center;
 }
 
 .search input {
+    width: 100%;
     padding: 0.7rem 0.8rem;
     font-size: 1.5vw;
     border-radius: 4px 0 0 4px;
@@ -88,16 +88,16 @@
 }
 
 .search button {
-    background-color: #ed1a23;
-    border: 2px solid #ed1a23;
+    background-color: #d21c2f;
+    border: 2px solid #d21c2f;
     border-radius: 0 4px 4px 0;
     color: #000;
-    padding: 0.3rem;
-    font-size: 1.2vw;
+    padding: .3rem .9rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: 0.4s;
+    transition: .4s;
 }
 
 .search button:hover {
