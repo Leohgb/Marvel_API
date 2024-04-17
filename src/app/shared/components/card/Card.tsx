@@ -8,6 +8,10 @@ interface CardProps<T extends ICharacters | IComic> {
 }
 
 const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
+
+    const truncate = (input:string) =>
+        input.length >= 50 ? `${input.substring(0, 50)}...` : input;
+
     return (
         <div className="card-card">
             {('name' in data) &&
@@ -22,7 +26,7 @@ const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
                 <Link to={`/Hq/${data.id}`}>
                     <div className='card-items'>
                         <img className="imagem" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`${data.title}`} />
-                        <h2>{data.title !== "" && data.title}</h2>
+                        <h2>{data.title !== "" && data.title ? truncate(data.title) : data.title}</h2>
                     </div>
                     <div className='Card-Details'><h2>Detalhes</h2></div>
                 </Link>
