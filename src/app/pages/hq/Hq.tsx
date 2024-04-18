@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FetchHeroes } from "../../../utils/Util";
-import { fetchCharacter, fetchData } from "../../../utils/asyncActions";
+import { fetchData } from "../../../utils/useFetchData";
+import { fetchCharacter } from "../../../utils/useFetchCharacter";
 import notFound from "../../../assets/Marvel_logo2.png"
 import "./Hq.css";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";

@@ -62,6 +62,7 @@
     height: 350px;
     max-height: 25vw;
     overflow: hidden;
+    transition: .6s;
 }
 
 .card-container .card-card:hover img {

@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
+import { fetchData } from "../../../utils/useFetchData";
 import './Character.css'
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FetchHeroes } from "../../../utils/Util";
 import Card from "../../shared/components/card/Card";
-import { fetchData, getComics } from "../../../utils/asyncActions";
+import { getComics } from "../../../utils/asyncActions";
 import Pagination from "../../shared/components/pagination/Pagination";
 import notFound from "../../../assets/Marvel_logo2.png"
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
@@ -21,7 +22,6 @@ export const Character = () => {
 
 
     const a = useCallback(() => {
-
         setUrl(FetchHeroes);
         fetchData(characterUrl, urlAuthorization).then((character) => {
             if (wasCalled.current) return;
@@ -56,13 +56,14 @@ export const Character = () => {
                         Appearances:
                     </h1>
                     <div className="card-container Hq">
-                        {comics.map((comic) => (
+                        {comics.length === 0 && <img className="NotFound" src={notFound} />}
+
+                        {comics.length > 0 && comics.map((comic) => (
                             <Card key={comic.id} data={comic} showLink={true} />
                         ))}
                     </div>
                     <Pagination page={page} setPage={setPage} available={character?.comics?.available} />
                 </div>
-
             </>
             }
         </div>

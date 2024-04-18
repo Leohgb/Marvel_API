@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { fetchRandomCharacter } from "../../../utils/useFetchRandomCharacter";
+import { fetchCharacterByName } from "../../../utils/useFetchCharacterByName";
 import Card from "../../shared/components/card/Card";
 import '../home/Home.css'
 import Die from "../../../assets/die.png";
@@ -6,7 +8,6 @@ import { useRef } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Thanos_Snap from "../../../assets/snap-the-snap.gif"
 import Error_Code from "../../../assets/Marvel_logo2.png"
-import { fetchCharacterByName, fetchRandomCharacter } from "../../../utils/asyncActions";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 
 export const Dashboard = () => {
