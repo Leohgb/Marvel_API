@@ -9,6 +9,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import Thanos_Snap from "../../../assets/snap-the-snap.gif"
 import Error_Code from "../../../assets/Marvel_logo2.png"
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
+import { getTimeoutId } from "../../../utils/timeout/Timeout";
 
 export const Dashboard = () => {
     const wasCalled = useRef(false);
@@ -40,6 +41,9 @@ export const Dashboard = () => {
             setShowMessage(false);
             fetchCharacterByName(search).then((character) => { return setCharacters(character) });
         }
+
+        getTimeoutId(true)
+
         const timeoutId = setTimeout(() => {
             setShowMessage(true)
         }, 2000);
