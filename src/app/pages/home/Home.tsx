@@ -45,7 +45,6 @@ export const Dashboard = () => {
         const resultPromise = getTimeoutId(true);
         resultPromise.then((res) => setShowMessage(res));
 
-
     }, [click, search]);
 
     return (
