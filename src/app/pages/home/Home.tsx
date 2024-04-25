@@ -42,13 +42,9 @@ export const Dashboard = () => {
             fetchCharacterByName(search).then((character) => { return setCharacters(character) });
         }
 
-        getTimeoutId(true)
+        const resultPromise = getTimeoutId(true);
+        resultPromise.then((res) => setShowMessage(res));
 
-        const timeoutId = setTimeout(() => {
-            setShowMessage(true)
-        }, 2000);
-
-        return () => clearTimeout(timeoutId);
 
     }, [click, search]);
 

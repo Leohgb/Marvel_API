@@ -1,5 +1,8 @@
 export function getTimeoutId(result: boolean) {
-    return setTimeout(() => {
-        console.log("Timeout completed with result:", result);
-    }, 2000);
+
+    return new Promise<boolean>((res) => {
+        setTimeout(() => {
+            res(result);
+        }, 2000);
+    });
 }
