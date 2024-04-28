@@ -8,6 +8,9 @@ import "./Hq.css";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 import { IHq } from "../../../Domain/Entities/hq.entity";
 import Card from "../../shared/components/card/Card";
+import Thanos_Snap from "../../../assets/snap-the-snap.gif";
+import Error_Code from "../../../assets/Marvel_logo2.png";
+import { getTimeoutId } from "../../../utils/timeout/Timeout";
 
 export const Hq = () => {
     const wasCalled = useRef(false);
@@ -16,6 +19,7 @@ export const Hq = () => {
     const [hq, setHq] = useState<IHq>()
     const [url, setUrl] = useState(FetchHeroes);
     const [characters, setCharacters] = useState<ICharacters[]>([]);
+    const [showMessage, setShowMessage] = useState<boolean>(false);
 
     const urlAuthorization = `${url?.slice(51)}`;
     const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
@@ -31,6 +35,10 @@ export const Hq = () => {
         });
         hq && fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
             .then((character) => setCharacters(character));
+
+        const resultPromise = getTimeoutId(true);
+        resultPromise.then((res) => setShowMessage(res));
+
     }, [hq, hqUrl, urlAuthorization])
 
     return (
@@ -63,7 +71,9 @@ export const Hq = () => {
 
                     </div>
                     <div className="card-container hq">
-                        {characters.map((character) =>
+                        {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={Thanos_Snap} />}
+                        {characters.length === 0 && showMessage && <img className="NotFound" src={Error_Code} />}
+                        {characters.length > 0 && characters.map((character) =>
                             <Card key={character.id} data={character} showLink={true}></Card>
                         )}
                     </div>

@@ -3,11 +3,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 0rem 2rem;
-    background-color: #ed1a23;
+    background-color: rgba(26, 26, 26, 0.9);
+    border-bottom: 1px solid #FFF;
 }
 
 #navbar img {
-    width: 10%
+    width: 10vw
 }
 
 #navbar h2 a {

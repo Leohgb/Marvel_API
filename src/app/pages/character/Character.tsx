@@ -1,13 +1,16 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../../../utils/useFetchData";
 import './Character.css'
-import { useCallback, useEffect, useRef, useState } from "react";
 import { FetchHeroes } from "../../../utils/Util";
 import Card from "../../shared/components/card/Card";
 import { getComics } from "../../../utils/asyncActions";
 import Pagination from "../../shared/components/pagination/Pagination";
 import notFound from "../../../assets/Marvel_logo2.png"
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
+import Thanos_Snap from "../../../assets/snap-the-snap.gif"
+import Error_Code from "../../../assets/Marvel_logo2.png"
+import { getTimeoutId } from "../../../utils/timeout/Timeout";
 
 export const Character = () => {
     const wasCalled = useRef(false);
@@ -17,6 +20,8 @@ export const Character = () => {
     const [comics, setComics] = useState<IComic[]>([]);
     const [page, setPage] = useState(0);
     const [url, setUrl] = useState(FetchHeroes);
+    const [showMessage, setShowMessage] = useState<boolean>(false);
+
     const urlAuthorization = `${url?.slice(51)}`;
     const characterUrl = `${url?.slice(0, 51)}/${id}`;
 
@@ -28,9 +33,12 @@ export const Character = () => {
             wasCalled.current = true;
             return setCharacter(character)
         });
-        console.log(character);
+
         getComics(characterUrl, urlAuthorization, page).then(comics => setComics(comics));
-    }, [character, characterUrl, page, urlAuthorization])
+        const resultPromise = getTimeoutId(true);
+        resultPromise.then((res) => setShowMessage(res));
+        
+    }, [characterUrl, page, urlAuthorization])
 
     useEffect(() => {
         a()
@@ -56,8 +64,8 @@ export const Character = () => {
                         Appearances:
                     </h1>
                     <div className="card-container Hq">
-                        {comics.length === 0 && <img className="NotFound" src={notFound} />}
-
+                        {comics.length === 0 && showMessage == false && <img className="Thanos-Gif" src={Thanos_Snap} />}
+                        {comics.length === 0 && showMessage && <img className="NotFound" src={Error_Code} />}
                         {comics.length > 0 && comics.map((comic) => (
                             <Card key={comic.id} data={comic} showLink={true} />
                         ))}
