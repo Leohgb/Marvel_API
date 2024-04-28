@@ -18,9 +18,11 @@
     display: none;
     position: absolute;
     margin: 30% 30%;
-    padding: 50px 50px 50px 50px;
+    padding: 20px 20px 20px 20px;
     background-color: #000;
     border: #fff 2px solid;
+    font-size: 1.5vw;
+    width: 20vw;
 }
 
 .dropdown-content::before {
@@ -31,7 +33,7 @@
     background-color: #fff;
     top: 0;
     left: 50%;
-    transform: translateX(-310%) translateY(-10px) rotate(37deg);
+    transform: translateX(-10vw) translateY(-10px) rotate(37deg);
     border-top: #fff 2px solid;
     border-left: #fff 2px solid;
     background: #000;

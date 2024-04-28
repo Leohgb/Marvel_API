@@ -59,7 +59,7 @@ export const Dashboard = () => {
                 </form>
                 <div className="dropdown">
                     <button className="dropbtn">?</button>
-                    <p className="dropdown-content">AAAAAA</p>
+                    <p className="dropdown-content">Para encontrar o personagem que deseja digite o nome em inglês, por exemplo ao invés de "Homem aranha" digite "Spider-man".</p>
                 </div>
             </div>
 
