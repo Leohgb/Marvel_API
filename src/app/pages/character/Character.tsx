@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchData } from "../../../utils/useFetchData";
 import './Character.css'
+import { fetchData } from "../../../utils/useFetchData";
 import { FetchHeroes } from "../../../utils/Util";
-import Card from "../../shared/components/card/Card";
 import { getComics } from "../../../utils/asyncActions";
-import Pagination from "../../shared/components/pagination/Pagination";
-import notFound from "../../../assets/Marvel_logo2.png"
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
+import { getTimeoutId } from "../../../utils/timeout/Timeout";
+import Card from "../../shared/components/card/Card";
+import Pagination from "../../shared/components/pagination/Pagination";
+
+import Thanos_Snap from "../../../assets/snap-the-snap.gif";
+import Error_Code from "../../../assets/Marvel_logo2.png";
 
 export const Character = () => {
     const wasCalled = useRef(false);
@@ -32,10 +35,11 @@ export const Character = () => {
         });
         console.log(character);
         getComics(characterUrl, urlAuthorization, page).then(comics => setComics(comics));
+        
         const resultPromise = getTimeoutId(true);
         resultPromise.then((res) => setShowMessage(res));
-        
-    }, [characterUrl, page, urlAuthorization])
+
+    }, [character, characterUrl, page, urlAuthorization])
 
     useEffect(() => {
         Characters()
@@ -53,7 +57,7 @@ export const Character = () => {
                     </div>
                     <div className="character-info">
                         <h1>{character.name}</h1>
-                        {character.description === "" && <img src={notFound} alt="" /> || <h3> {character.description}</h3>}
+                        {character.description === "" && <img src={Error_Code} alt="" /> || <h3> {character.description}</h3>}
                     </div>
                 </div>
                 <div>
@@ -61,8 +65,8 @@ export const Character = () => {
                         Appearances:
                     </h1>
                     <div className="card-container Hq">
-                        {comics.length === 0 && <img className="NotFound" src={notFound} />}
-
+                        {comics.length === 0 && showMessage == false && <img className="Thanos-Gif" src={Thanos_Snap} />}
+                        {comics.length === 0 && showMessage && <img className="NotFound" src={Error_Code} />}
                         {comics.length > 0 && comics.map((comic) => (
                             <Card key={comic.id} data={comic} showLink={true} />
                         ))}
