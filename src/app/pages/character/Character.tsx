@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import './Character.css'
 import { fetchData } from "../../../utils/useFetchData";
 import { FetchHeroes } from "../../../utils/Util";
-import { getComics } from "../../../utils/asyncActions";
+import { getComics } from "../../../utils/useFetchComics";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 import { getTimeoutId } from "../../../utils/timeout/Timeout";
 import Card from "../../shared/components/card/Card";

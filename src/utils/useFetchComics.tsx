@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { comicsPages } from "./useComicsPages";
 
 export const getComics = async (urlComic: string | undefined, urlAuthorization: string, page: number) => {
     if (urlComic) {
@@ -10,12 +10,3 @@ export const getComics = async (urlComic: string | undefined, urlAuthorization: 
         return [];
     }
 }
-
-export const comicsPages = async (urlComic: IComic[]) => {
-    if (urlComic) {
-        return urlComic
-    } else {
-        return [];
-    }
-}
-
