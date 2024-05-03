@@ -17,7 +17,7 @@
         0 0 2rem #ff0000
 }
 
-.card-card a{
+.card-card a {
     display: flex;
     flex-direction: column;
     flex: auto;
@@ -118,10 +118,10 @@
     font-weight: bold;
 }
 
-.card-container div .Card-Details h2{
+.card-container div .Card-Details h2 {
     color: #f7faf8;
     text-shadow: none;
-    
+
 }
 
 .container .Hq img {
@@ -133,7 +133,7 @@
     background-color: #111111;
 }
 
-.card-container .card-card:hover .Card-Details h2{
+.card-container .card-card:hover .Card-Details h2 {
     color: #d21c2f;
     transition: .5s;
     text-shadow: none;
@@ -153,21 +153,22 @@
 
 @media only screen and (max-width: 768px) {
 
-    .card-container{
-        gap: 5rem;
+    .card-container {
+        gap: 2rem;
     }
 
     .card-container>.card-card {
-        flex-basis: 40%;
+        flex-basis: 100%;
     }
 
     .card-container .card-items img {
-        height: 250px;
+        height: 400px;
         max-height: 60vw;
     }
 
-    .Hq  .card-items img {
-        height: 400px;
+    .container .Hq img {
+        height: 600px;
+        max-height: 100vw;
     }
 
     .card-container div h2 {
@@ -179,8 +180,14 @@
     .card-container>.card-card {
         flex-basis: 70%;
     }
+
     .card-container .card-items img {
-        height: 400px;
+        height: 250px;
         max-height: 100vw;
+    }
+
+    .container .Hq img {
+        height: 400px;
+
     }
 }

@@ -94,7 +94,7 @@
     border: 2px solid #d21c2f;
     border-radius: 0 4px 4px 0;
     color: #000;
-    padding: .3rem .9rem;
+    padding: .3rem 1rem;
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -131,4 +131,17 @@
 .random-button:active .random-die {
     transform: rotate(0deg);
     transition: 0s;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .search {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search input {
+        font-size: 2vw;
+    }
 }
