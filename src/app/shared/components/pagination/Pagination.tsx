@@ -1,9 +1,9 @@
-import './Pagination.css'
+import './Pagination.css';
 
-const Pagination = ({ page, setPage, available }: { page: number, setPage: Function, available: number | undefined }) => {
+const Pagination = ({ page, setPage, available }: { page: number, setPage: React.Dispatch<React.SetStateAction<number>>, available: number | undefined }) => {
     const pageNumbers = [];
-    let renderizarIntervalo = [false, false];
-    let pageFormat = page / 20;
+    const renderizarIntervalo = [false, false];
+    const pageFormat = page / 20;
 
     if (available) {
         for (let i = 0; i < available; i += 20) {
@@ -16,7 +16,7 @@ const Pagination = ({ page, setPage, available }: { page: number, setPage: Funct
     return (
         <div className='Pagination'>
             <ul className='List'>
-                {page > pageNumbers[0] && <button onClick={() => { setPage((prevState: number) => (prevState - 20)) }}>&#60;</button> || <p></p>}
+                {page > pageNumbers[0] && <button onClick={() => setPage(prevState => prevState - 20)}>&#60;</button>}
                 {pageNumbers.map((num, index) => {
                     if (
                         index + 1 === pageNumbers.length ||
@@ -46,8 +46,9 @@ const Pagination = ({ page, setPage, available }: { page: number, setPage: Funct
                             </li>
                         );
                     }
+                    return null;
                 })}
-                {pageFormat <= pageNumbers.length - 2 && <button onClick={() => setPage((prevState: number) => (prevState + 20))}>&#62;</button>}
+                {pageFormat <= pageNumbers.length - 2 && <button onClick={() => setPage(prevState => prevState + 20)}>&#62;</button>}
             </ul>
         </div >
     )

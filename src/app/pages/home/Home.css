@@ -32,7 +32,7 @@
     height: 15px;
     background-color: #fff;
     top: 0;
-    left: 50%;
+    left: 11vw;
     transform: translateX(-10vw) translateY(-10px) rotate(37deg);
     border-top: #fff 2px solid;
     border-left: #fff 2px solid;
@@ -95,7 +95,7 @@
     border-radius: 0 4px 4px 0;
     color: #000;
     padding: .3rem 1rem;
-    font-size: 1rem;
+    font-size: 1.5vw;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -109,6 +109,8 @@
 
 .buttons button {
     border: 1.5px solid #fff;
+    color: #fff;
+
 }
 
 .random-button {

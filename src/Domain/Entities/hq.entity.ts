@@ -66,9 +66,7 @@ export interface IHq {
         }[];
         returned: number;
     }
-    textObjects: {
-
-    }[];
+    textObjects: object[];
     thumbnail: {
         extension: string;
         path: string;

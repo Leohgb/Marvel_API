@@ -6,6 +6,8 @@ import { FetchHeroes } from "../../../utils/Util";
 import { getComics } from "../../../utils/useFetchComics";
 import { ICharacters } from "../../../Domain/Entities/characters.entity";
 import { getTimeoutId } from "../../../utils/timeout/Timeout";
+import { IComic } from "../../../Domain/Entities/comics.entity";
+
 import Card from "../../shared/components/card/Card";
 import Pagination from "../../shared/components/pagination/Pagination";
 
@@ -46,7 +48,7 @@ export const Character = () => {
     }, [Characters])
 
     return (
-        <div className="container ">
+        <div className="container character">
 
             {character && <>
                 <div className="info">

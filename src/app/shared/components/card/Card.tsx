@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import './Card.css'
-import { ICharacters } from '../../../../Domain/Entities/characters.entity';
+import { ICharacters, IComic } from '../index';
+import './Card.css';
 
 interface CardProps<T extends ICharacters | IComic> {
     data: T;
@@ -9,7 +9,7 @@ interface CardProps<T extends ICharacters | IComic> {
 
 const Card = <T extends ICharacters | IComic>({ data }: CardProps<T>) => {
 
-    const truncate = (input:string) =>
+    const truncate = (input: string) =>
         input.length >= 50 ? `${input.substring(0, 50)}...` : input;
 
     return (
