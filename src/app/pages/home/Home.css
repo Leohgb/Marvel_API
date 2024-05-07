@@ -39,7 +39,6 @@
     background: #000;
 }
 
-
 .dropdown:hover .dropdown-content {
     display: block;
     z-index: 1;
@@ -136,6 +135,17 @@
 }
 
 @media only screen and (max-width: 768px) {
+
+    .dropdown-content {
+        margin: 30% 0 0 -80%;
+        width: 20vw;
+    }
+
+    .dropdown-content::before {
+        transform: translateX(0) translateY(-10px) rotate(37deg);
+        border-top: #fff 2px solid;
+        border-left: #fff 2px solid;
+    }
 
     .search {
         width: 50%;

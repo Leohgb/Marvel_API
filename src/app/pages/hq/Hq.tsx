@@ -1,42 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FetchHeroes } from "../../../utils/Util";
-import { fetchData } from "../../../utils/useFetchData";
-import { fetchCharacter } from "../../../utils/useFetchCharacter";
-import notFound from "../../../assets/Marvel_logo2.png"
+import * as AllExports from "../index";
 import "./Hq.css";
-import { ICharacters } from "../../../Domain/Entities/characters.entity";
-import { IHq } from "../../../Domain/Entities/hq.entity";
-import Card from "../../shared/components/card/Card";
-import Thanos_Snap from "../../../assets/snap-the-snap.gif";
-import Error_Code from "../../../assets/Marvel_logo2.png";
-import { getTimeoutId } from "../../../utils/timeout/Timeout";
 
 export const Hq = () => {
     const wasCalled = useRef(false);
 
     const { id } = useParams()
-    const [hq, setHq] = useState<IHq>()
-    const [url, setUrl] = useState(FetchHeroes);
-    const [characters, setCharacters] = useState<ICharacters[]>([]);
+    const [hq, setHq] = useState<AllExports.IHq>()
+    const [url, setUrl] = useState(AllExports.FetchHeroes);
+    const [characters, setCharacters] = useState<AllExports.ICharacters[]>([]);
     const [showMessage, setShowMessage] = useState<boolean>(false);
 
     const urlAuthorization = `${url?.slice(51)}`;
     const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
 
     useEffect(() => {
-
-        console.log(hq?.id)
-        setUrl(FetchHeroes);
-        fetchData(hqUrl, urlAuthorization).then((hq) => {
+        setUrl(AllExports.FetchHeroes);
+        AllExports.fetchData(hqUrl, urlAuthorization).then((hq) => {
             if (wasCalled.current) return;
             wasCalled.current = true;
             setHq(hq)
         });
-        hq && fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
+        hq && AllExports.fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
             .then((character) => setCharacters(character));
 
-        const resultPromise = getTimeoutId(true);
+        const resultPromise = AllExports.getTimeoutId(true);
         resultPromise.then((res) => setShowMessage(res));
 
     }, [hq, hqUrl, urlAuthorization])
@@ -64,17 +53,17 @@ export const Hq = () => {
                                                 : creator.role === 'editor' ? `📄${creator.role}`
                                                     : creator.role === 'inker' || creator.role === 'inker (cover)' ? `🎨${creator.role}`
                                                         : creator.role}: {creator.name}</h3>
-                                )) : <img src={notFound} />}
+                                )) : <img src={AllExports.Error_Code} />}
                             <h2>Story:</h2>
-                            <p>{hq.description ? hq.description : <img src={notFound} />}</p>
+                            <p>{hq.description ? hq.description : <img src={AllExports.Error_Code} />}</p>
                         </div>
 
                     </div>
                     <div className="card-container hq">
-                        {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={Thanos_Snap} />}
-                        {characters.length === 0 && showMessage && <img className="NotFound" src={Error_Code} />}
+                        {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={AllExports.Thanos_Snap} />}
+                        {characters.length === 0 && showMessage && <img className="NotFound" src={AllExports.Error_Code} />}
                         {characters.length > 0 && characters.map((character) =>
-                            <Card key={character.id} data={character} showLink={true}></Card>
+                            <AllExports.Card key={character.id} data={character} showLink={true}></AllExports.Card>
                         )}
                     </div>
                 </div>

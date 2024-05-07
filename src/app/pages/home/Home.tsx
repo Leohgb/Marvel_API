@@ -1,19 +1,11 @@
-import { useEffect, useState } from "react"
-import { fetchRandomCharacter } from "../../../utils/useFetchRandomCharacter";
-import { fetchCharacterByName } from "../../../utils/useFetchCharacterByName";
-import Card from "../../shared/components/card/Card";
+import { useEffect, useState, useRef } from "react"
 import '../home/Home.css'
-import Die from "../../../assets/die.png";
-import { useRef } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
-import Thanos_Snap from "../../../assets/snap-the-snap.gif"
-import Error_Code from "../../../assets/Marvel_logo2.png"
-import { ICharacters } from "../../../Domain/Entities/characters.entity";
-import { getTimeoutId } from "../../../utils/timeout/Timeout";
+import * as AllExports from "../index";
 
 export const Dashboard = () => {
     const wasCalled = useRef(false);
-    const [characters, setCharacters] = useState<ICharacters[]>([]);
+    const [characters, setCharacters] = useState<AllExports.ICharacters[]>([]);
     const [showMessage, setShowMessage] = useState<boolean>(false);
 
     const [search, setSearch] = useState<string>("");
@@ -35,14 +27,14 @@ export const Dashboard = () => {
         if (click === false) {
             if (wasCalled.current) return;
             wasCalled.current = true;
-            fetchRandomCharacter().then((character) => setCharacters(character));
+            AllExports.fetchRandomCharacter().then((character) => setCharacters(character));
         } else if (click === true) {
             setSearch("");
             setShowMessage(false);
-            fetchCharacterByName(search).then((character) => { return setCharacters(character) });
+            AllExports.fetchCharacterByName(search).then((character) => { return setCharacters(character) });
         }
 
-        const resultPromise = getTimeoutId(true);
+        const resultPromise = AllExports.getTimeoutId(true);
         resultPromise.then((res) => setShowMessage(res));
 
     }, [click, search]);
@@ -65,18 +57,18 @@ export const Dashboard = () => {
 
             <h2 className="title">Characters:</h2>
             <button className="random-button" onClick={() => {
-                fetchRandomCharacter().then(characters => setCharacters(characters))
+                AllExports.fetchRandomCharacter().then(characters => setCharacters(characters))
                 setClick(true);
             }}>
-                <img className="random-die" src={Die} alt="Dado" />
+                <img className="random-die" src={AllExports.Die} alt="Dado" />
             </button>
 
             <div className="card-container">
-                {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={Thanos_Snap} />}
-                {characters.length === 0 && showMessage && <img className="NotFound" src={Error_Code} />}
+                {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={AllExports.Thanos_Snap} />}
+                {characters.length === 0 && showMessage && <img className="NotFound" src={AllExports.Error_Code} />}
                 {characters.length !== 0 &&
                     characters.map((character) =>
-                        <Card key={character.id} data={character} showLink={true} />)}
+                        <AllExports.Card key={character.id} data={character} showLink={true} />)}
 
             </div>
         </div>
