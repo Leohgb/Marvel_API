@@ -1,9 +1,8 @@
-//Importando todas as paginas de pages
 export { default as Card } from "../shared/components/card/Card";
 export { default as Pagination } from "../shared/components/pagination/Pagination";
-export { default as Thanos_Snap } from "../../../assets/snap-the-snap.gif";
-export { default as Error_Code} from "../../../assets/Marvel_logo2.png";
-export { default as Die } from "../../../assets/die.png";
+export { default as Thanos_Snap } from "../../assets/snap-the-snap.gif";
+export { default as Error_Code} from "../../assets/Marvel_logo2.png";
+export { default as Die } from "../../assets/die.png";
 export { FetchHeroes } from "../../utils/Util";
 export { fetchData } from "../../utils/useFetchData";
 export { fetchCharacter } from "../../utils/useFetchCharacter";

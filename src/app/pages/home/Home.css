@@ -117,6 +117,16 @@
     display: flex;
     margin: auto;
     margin-bottom: 5px;
+    box-shadow: 10px 10px #fff;
+    border: 2px solid #fff !important;
+    transition: all ease-in 0.2s !important;
+}
+
+.random-button:hover {
+    box-shadow: none;
+    transform: translateY(4px) !important;
+    transition: all ease-in 0.2s;
+    opacity: 1 !important;
 }
 
 .buttons button:hover {
