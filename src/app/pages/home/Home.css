@@ -163,7 +163,7 @@
         justify-content: center;
     }
 
-    .search input {
-        font-size: 2vw;
+    .search input, .search button {
+        font-size: 12px;
     }
 }
