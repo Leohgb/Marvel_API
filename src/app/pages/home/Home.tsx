@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import '../home/Home.css'
 import { BiSearchAlt2 } from "react-icons/bi";
 import * as AllExports from "../index";
+import { Loading } from "../loading/loading";
 
 export const Dashboard = () => {
     const wasCalled = useRef(false);
@@ -31,12 +32,10 @@ export const Dashboard = () => {
         } else if (click === true) {
             setSearch("");
             setShowMessage(false);
-            AllExports.fetchCharacterByName(search).then((character) => { return setCharacters(character) });
+            AllExports.fetchCharacterByName(search).then((character) => setCharacters(character));
         }
-
         const resultPromise = AllExports.getTimeoutId(true);
         resultPromise.then((res) => setShowMessage(res));
-
     }, [click, search]);
 
     return (
@@ -64,12 +63,12 @@ export const Dashboard = () => {
             </button>
 
             <div className="card-container">
-                {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={AllExports.Thanos_Snap} />}
+                {characters.length === 0 && showMessage == false && <Loading />}
                 {characters.length === 0 && showMessage && <img className="NotFound" src={AllExports.Error_Code} />}
                 {characters.length !== 0 &&
                     characters.map((character) =>
-                        <AllExports.Card key={character.id} data={character} showLink={true} />)}
-
+                        <AllExports.Card key={character.id} data={character} showLink={true} />)
+                }
             </div>
         </div>
     )

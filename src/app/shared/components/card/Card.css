@@ -17,6 +17,17 @@
         0 0 2rem #ff0000
 }
 
+.card-card {
+    transition: transform .6s;
+    border: .15em solid white;
+    box-shadow:
+     
+        inset 1em 1em .4em rgba(0, 0, 0, .6),
+        0 0 0 .2em #ff0000,
+        0 0 1em .3em #ff0000,
+        1em 1em .4em rgba(0, 0, 0, .6);
+
+}
 .card-card a {
     display: flex;
     flex-direction: column;
@@ -26,6 +37,7 @@
 
 .card-card:hover {
     transform: scale(1.2);
+    z-index: 1;
 }
 
 .card-card {

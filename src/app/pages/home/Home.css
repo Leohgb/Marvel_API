@@ -60,9 +60,6 @@
     gap: 2%;
 }
 
-.buttons button:nth-child(2):focus {
-    background-color: white;
-}
 
 .NotFound {
     width: 50%;
@@ -92,7 +89,7 @@
     background-color: #d21c2f;
     border: 2px solid #d21c2f;
     border-radius: 0 4px 4px 0;
-    color: #000;
+    color: #fff;
     padding: .3rem 1rem;
     font-size: 1.5vw;
     display: flex;
@@ -102,14 +99,14 @@
 }
 
 .search button:hover {
-    background-color: transparent;
+    background-color: #fff;
     color: #ea4f4c;
 }
 
-.buttons button {
+
+.buttons .dropdown button {
     border: 1.5px solid #fff;
     color: #fff;
-
 }
 
 .random-button {
@@ -129,9 +126,6 @@
     opacity: 1 !important;
 }
 
-.buttons button:hover {
-    border: 2px solid #fff;
-}
 
 .random-button .random-die {
     transform: rotate(-720deg);
@@ -163,7 +157,8 @@
         justify-content: center;
     }
 
-    .search input, .search button {
+    .search input,
+    .search button {
         font-size: 12px;
     }
 }

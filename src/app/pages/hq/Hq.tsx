@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as AllExports from "../index";
 import "./Hq.css";
+import { Loading } from "../loading/loading";
 
 export const Hq = () => {
     const wasCalled = useRef(false);
@@ -60,16 +61,15 @@ export const Hq = () => {
 
                     </div>
                     <div className="card-container hq">
-                        {characters.length === 0 && showMessage == false && <img className="Thanos-Gif" src={AllExports.Thanos_Snap} />}
+                        {characters.length === 0 && showMessage == false && <Loading />}
                         {characters.length === 0 && showMessage && <img className="NotFound" src={AllExports.Error_Code} />}
                         {characters.length > 0 && characters.map((character) =>
                             <AllExports.Card key={character.id} data={character} showLink={true}></AllExports.Card>
                         )}
                     </div>
-                </div>
-                || <div>
-
-                </div>}
+                </div> ||
+                <div></div>
+            }
         </main>
     )
 }

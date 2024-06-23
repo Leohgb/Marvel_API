@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import './Character.css'
 
 import * as AllExports from "../index";
+import { Loading } from "../loading/loading";
 
 export const Character = () => {
     const wasCalled = useRef(false);
@@ -56,7 +57,7 @@ export const Character = () => {
                         Appearances:
                     </h1>
                     <div className="card-container Hq">
-                        {comics.length === 0 && showMessage == false && <img className="Thanos-Gif" src={AllExports.Thanos_Snap} />}
+                        {comics.length === 0 && showMessage == false && <Loading />}
                         {comics.length === 0 && showMessage && <img className="NotFound" src={AllExports.Error_Code} />}
                         {comics.length > 0 && comics.map((comic) => (
                             <AllExports.Card key={comic.id} data={comic} showLink={true} />
