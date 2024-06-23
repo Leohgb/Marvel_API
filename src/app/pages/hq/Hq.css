@@ -90,6 +90,10 @@
     filter: brightness(70%);
 }
 
+.Comic .NotFound {
+  height: auto;
+}
+
 .Comic .description {
     width: 60%;
     display: flex;

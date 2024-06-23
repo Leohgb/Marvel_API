@@ -60,11 +60,6 @@
     gap: 2%;
 }
 
-
-.NotFound {
-    width: 50%;
-}
-
 .title .query-text {
     color: #1DA1F2;
 }
@@ -73,6 +68,11 @@
     width: 30%;
     display: flex;
     justify-content: center;
+}
+
+
+.NotFound {
+    width: 50%;
 }
 
 .search input {
@@ -160,5 +160,20 @@
     .search input,
     .search button {
         font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .search {
+        width: 80%;
+    }
+
+    .dropdown-content {
+        width: 50vw;
     }
 }
