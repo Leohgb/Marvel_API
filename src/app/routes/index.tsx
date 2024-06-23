@@ -13,10 +13,10 @@ export const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route element={<App />}>
-          <Route path="/pagina-inicial" element={<Dashboard />} />
+          <Route path="/home" element={<Dashboard />} />
           <Route path="character/:id" element={<Character />} />
           <Route path="HQ/:id" element={<Hq />}></Route>
-          <Route path="*" element={<Navigate to="/pagina-inicial" />} />
+          <Route path="*" element={<Navigate to="/home" />} />
         </Route>
       </Switch>
     </BrowserRouter>
