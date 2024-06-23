@@ -11,6 +11,7 @@
 4. Depois de salvar o arquivo `.env`, é necessário executar o comando npm install para instalar as dependências 
 5. Com isso feito execute o comando npm run dev
 
-# Screenshots
+## Screenshots
+![3](https://github.com/Leohgb/Marvel_API/assets/91156801/6aeaad5f-ab17-4b4b-aa7c-88cc18b8bfc9)
 ![1](https://github.com/Leohgb/Marvel_API/assets/91156801/e8ce7022-99bc-4371-8b5a-4cc72db011ba)
 ![2](https://github.com/Leohgb/Marvel_API/assets/91156801/9c45b851-1ecd-4781-85df-1481b0c64992)
