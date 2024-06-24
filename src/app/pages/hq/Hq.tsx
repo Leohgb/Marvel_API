@@ -11,30 +11,29 @@ export const Hq = () => {
     const [characters, setCharacters] = useState<AllExports.ICharacters[]>([]);
     const [showMessage, setShowMessage] = useState<boolean>(false);
     const wasCalled = useRef(false);
-  
+
     const urlAuthorization = `${url?.slice(51)}`;
-    const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
-    console.log(AllExports.FetchHeroes)
-    console.log(url)
-    console.log(hqUrl)
-  
+    const UrlCorrect = url.startsWith(" ") ? url : url.replace('http:', 'https:');
+    const hqUrl = `${UrlCorrect?.slice(0, 41)}comics/${id}`;
+
     useEffect(() => {
-      setUrl(AllExports.FetchHeroes);
-      AllExports.fetchData(hqUrl, urlAuthorization).then((hq) => {
-        if (wasCalled.current) return;
-        wasCalled.current = true;
-        setHq(hq);
-      });
-      if (hq) {
-        AllExports.fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
-          .then((character) => setCharacters(character));
-      }
-  
-      const resultPromise = AllExports.getTimeoutId(true);
-      resultPromise.then((res) => setShowMessage(res));
-  
+        setUrl(AllExports.FetchHeroes);
+
+        AllExports.fetchData(hqUrl, urlAuthorization).then((hq) => {
+            if (wasCalled.current) return;
+            wasCalled.current = true;
+            setHq(hq);
+        });
+        if (hq) {
+            AllExports.fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
+                .then((character) => setCharacters(character));
+        }
+
+        const resultPromise = AllExports.getTimeoutId(true);
+        resultPromise.then((res) => setShowMessage(res));
+
     }, [hq, hqUrl, urlAuthorization]);
-  
+
 
     return (
         <main className="Comic">
