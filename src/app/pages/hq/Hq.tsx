@@ -5,31 +5,35 @@ import "./Hq.css";
 import { Loading } from "../loading/loading";
 
 export const Hq = () => {
-    const wasCalled = useRef(false);
-
-    const { id } = useParams()
-    const [hq, setHq] = useState<AllExports.IHq>()
+    const { id } = useParams();
+    const [hq, setHq] = useState<AllExports.IHq>();
     const [url, setUrl] = useState(AllExports.FetchHeroes);
     const [characters, setCharacters] = useState<AllExports.ICharacters[]>([]);
     const [showMessage, setShowMessage] = useState<boolean>(false);
-
+    const wasCalled = useRef(false);
+  
     const urlAuthorization = `${url?.slice(51)}`;
     const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
-
+    const hqUrlCorrect = hqUrl.startsWith(" ") ? hqUrl : hqUrl.replace('http:', 'https:');
+    console.log(hqUrlCorrect)
+  
     useEffect(() => {
-        setUrl(AllExports.FetchHeroes);
-        AllExports.fetchData(hqUrl, urlAuthorization).then((hq) => {
-            if (wasCalled.current) return;
-            wasCalled.current = true;
-            setHq(hq)
-        });
-        hq && AllExports.fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
-            .then((character) => setCharacters(character));
-
-        const resultPromise = AllExports.getTimeoutId(true);
-        resultPromise.then((res) => setShowMessage(res));
-
-    }, [hq, hqUrl, urlAuthorization])
+      setUrl(AllExports.FetchHeroes);
+      AllExports.fetchData(hqUrlCorrect, urlAuthorization).then((hq) => {
+        if (wasCalled.current) return;
+        wasCalled.current = true;
+        setHq(hq);
+      });
+      if (hq) {
+        AllExports.fetchCharacter(`${hq?.characters.collectionURI}`, urlAuthorization)
+          .then((character) => setCharacters(character));
+      }
+  
+      const resultPromise = AllExports.getTimeoutId(true);
+      resultPromise.then((res) => setShowMessage(res));
+  
+    }, [hq, hqUrlCorrect, urlAuthorization]);
+  
 
     return (
         <main className="Comic">
