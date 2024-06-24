@@ -14,12 +14,13 @@ export const Hq = () => {
   
     const urlAuthorization = `${url?.slice(51)}`;
     const hqUrl = `${url?.slice(0, 41)}comics/${id}`;
-    const hqUrlCorrect = hqUrl.startsWith(" ") ? hqUrl : hqUrl.replace('http:', 'https:');
-    console.log(hqUrlCorrect)
+    console.log(AllExports.FetchHeroes)
+    console.log(url)
+    console.log(hqUrl)
   
     useEffect(() => {
       setUrl(AllExports.FetchHeroes);
-      AllExports.fetchData(hqUrlCorrect, urlAuthorization).then((hq) => {
+      AllExports.fetchData(hqUrl, urlAuthorization).then((hq) => {
         if (wasCalled.current) return;
         wasCalled.current = true;
         setHq(hq);
@@ -32,7 +33,7 @@ export const Hq = () => {
       const resultPromise = AllExports.getTimeoutId(true);
       resultPromise.then((res) => setShowMessage(res));
   
-    }, [hq, hqUrlCorrect, urlAuthorization]);
+    }, [hq, hqUrl, urlAuthorization]);
   
 
     return (

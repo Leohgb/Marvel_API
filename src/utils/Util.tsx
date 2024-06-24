@@ -7,4 +7,6 @@ const time = Number(new Date());
 
 const hash = md5(time + privateKey + publicKey);
 
-export const FetchHeroes = `https://gateway.marvel.com:443/v1/public/characters?ts=${time}&apikey=${publicKey}&hash=${hash}`;
+const url = `https://gateway.marvel.com:443/v1/public/characters?ts=${time}&apikey=${publicKey}&hash=${hash}`;
+
+export const FetchHeroes = url.startsWith("https:") ? url : url.replace('http:', 'https:');;
