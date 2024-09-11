@@ -3,7 +3,7 @@
 <h3>Link: https://marvel-gmzbwtvho-leonardo-leal-de-albuquerques-projects.vercel.app/</h3>
 
 ## 👨🏻‍💻 Como executar o projeto
-1. Acesse o seguinte link da [Marvel Developer Portal](https://developer.marvel.com/) e crie uma conta.
+1. Acesse o seguinte link da https://marvel-api-lilac-six.vercel.app/home e crie uma conta.
 2. Após isso vá para sua conta (https://developer.marvel.com/account) e pegue a chave publica e a chave privada.
 3. Com as duas chaves geradas e crie o arquivo `.env` no repositório e coloque as chaves seguindo o seguinte código
     ```
